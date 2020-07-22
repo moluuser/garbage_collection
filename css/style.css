@@ -1,0 +1,73 @@
+.mui-bar-nav {
+	background-color: #fefefe;
+
+}
+
+.mui-bar-tab {
+	background-color: #fefefe;
+
+}
+
+.mui-search {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 78%;
+	transform: translate(-50%, -50%);
+}
+
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: #ade06f;
+}
+
+.demo-menu {
+	overflow: hidden;
+}
+
+.demo-menu div {
+	/* border: 1px solid red; */
+	width: 20%;
+	height: 6.875rem;
+	text-align: center;
+	padding: 0.625rem 0rem;
+	float: left;
+}
+
+.demo-menu div img {
+	display: block;
+	width: 3.8rem;
+	height: 3.8rem;
+	margin: 0 auto;
+	border-radius: 50%;
+}
+
+.demo-menu div p {
+	position: relative;
+	top: 0.2rem;
+}
+
+.demo-title {
+	color: #000000;
+	font-size: 1rem;
+	position: relative;
+	top: 0.3125rem;
+	font-weight: 200;
+}
+
+.demo-menu-2 div {
+	/* border: 1px solid red; */
+	width: 33%;
+	height: 6.25rem;
+	text-align: center;
+	padding: 0.625rem 0.3125rem;
+	float: left;
+}
+.demo-menu-2 {
+	overflow: hidden;
+}
+
+.demo-menu-2 div img {
+	display: block;
+	width: 100%;
+	margin: 0 auto;
+}

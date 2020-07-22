@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/guide.css"/>
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+		</script>
+		<div class="mui-content">
+			<!-- 轮播图 -->
+			<!-- 注意需要大概500x300 -->
+			<div id="slider" class="mui-slider" style="height: 21.875rem;">
+				<div class="mui-slider-group mui-slider-loop">
+					<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="http:\/\/file.moluuser.com/index4.png">
+						</a>
+					</div>
+					<!-- 第一张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http:\/\/file.moluuser.com/index1.png">
+						</a>
+					</div>
+					<!-- 第二张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http:\/\/file.moluuser.com/index2.png">
+						</a>
+					</div>
+					<!-- 第三张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http:\/\/file.moluuser.com/index3.png">
+						</a>
+					</div>
+					<!-- 第四张 -->
+					<div class="mui-slider-item">
+						<a href="#">
+							<img src="http:\/\/file.moluuser.com/index4.png">
+						</a>
+					</div>
+					<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+					<div class="mui-slider-item mui-slider-item-duplicate">
+						<a href="#">
+							<img src="http:\/\/file.moluuser.com/index1.png">
+						</a>
+					</div>
+				</div>
+				<div class="mui-slider-indicator">
+					<div class="mui-indicator mui-active"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+					<div class="mui-indicator"></div>
+				</div>
+			</div>
+		</div>
+		<!-- /轮播图 -->
+		<br>
+
+		<!-- 宫格图片 -->
+		<div class="container">
+			<div>
+				<div class="cell no1">
+					<div><img class="imgs" src="img/test.png"></div>
+				</div>
+				<div class="cell no2">
+					<div><img class="imgs" src="img/test.png"></div>
+				</div>
+			</div>
+			<div>
+				<div class="cell no3">
+					<div><img class="imgs" src="img/test.png"></div>
+				</div>
+				<div class="cell no4">
+					<div><img class="imgs" src="img/test.png"></div>
+				</div>
+			</div>
+		</div>
+		<!-- /宫格图片 -->
+	</body>
+
+</html>

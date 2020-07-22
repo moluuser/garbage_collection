@@ -1,0 +1,22 @@
+.mui-bar-nav {
+	background-color: #fefefe;
+
+}
+
+.mui-bar-tab {
+	background-color: #fefefe;
+
+}
+
+.mui-search {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 78%;
+	transform: translate(-50%, -50%);
+}
+
+.mui-bar-tab .mui-tab-item.mui-active {
+    color: #ade06f;
+}
+
