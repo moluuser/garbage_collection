@@ -10,7 +10,6 @@
 		<link rel="stylesheet" href="css/iconfont.css">
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-			// 加载子页面
 			mui.plusReady(function() {
 				// 上下边距
 				var subPageStyle = {
@@ -19,7 +18,7 @@
 				}
 				var mainView = plus.webview.currentWebview();
 				// 子页面数组
-				var subPages = ["guide.html", "demo.html", "visit.html", "mall.html", "me.html", "msg.html"];
+				var subPages = ["home.html", "guide.html", "demo.html", "visit.html", "mall.html", "me.html"];
 				for (var i = 0; i < subPages.length; ++i) {
 					var url = subPages[i];
 					var subView = plus.webview.create(url, url, subPageStyle);
@@ -27,26 +26,26 @@
 					mainView.append(subView);
 				}
 				plus.webview.show(subPages[0]);
-				// 点击事件
+				// 底部点击事件
 				mui(".mui-bar-tab").on("tap", "a", function() {
 					var id = this.getAttribute("href");
 					plus.webview.show(id);
 				});
-				mui(".mui-bar-nav").on("tap", "a", function() {
-					var id = this.getAttribute("href");
-					plus.webview.show(id);
-				});
+
 				// 状态栏
 				plus.navigator.setStatusBarStyle('dark');
-				plus.navigator.setStatusBarBackground('white'); 
-			});
+				plus.navigator.setStatusBarBackground('white');
 
-		
+				// 自动轮播
+				// 获得slider插件对象
+				var gallery = mui('.mui-slider');
+				gallery.slider({
+					interval: 5000 // 自动轮播周期，若为0则不自动播放，默认为0；
+				});
+			});
 		</script>
 	</head>
 	<body>
-
-
 		<!-- 底部导航 -->
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item mui-active" href="guide.html">

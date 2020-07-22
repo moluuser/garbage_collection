@@ -56,12 +56,13 @@
 
 .demo-menu-2 div {
 	/* border: 1px solid red; */
-	width: 33%;
+	width: 33.3%;
 	height: 6.25rem;
 	text-align: center;
 	padding: 0.625rem 0.3125rem;
 	float: left;
 }
+
 .demo-menu-2 {
 	overflow: hidden;
 }
@@ -70,4 +71,109 @@
 	display: block;
 	width: 100%;
 	margin: 0 auto;
+}
+
+.container {
+	display: table;
+}
+
+.cell {
+	display: table-cell;
+}
+
+.cell>div {
+	margin: 5px;
+}
+
+.imgs {
+	width: 100%;
+	border-radius: 0.625rem;
+}
+
+.guide-text {
+	/* border: 1px solid red; */
+	width: 100%;
+	padding: 0.9375rem 0.9375rem;
+}
+
+.p-title {
+	padding-left: 0.625rem;
+	padding-top: 0.625rem;
+}
+
+
+.mall-menu {
+	overflow: hidden;
+	display: flex;
+	justify-content: space-around;
+	margin: 0.75rem;
+}
+
+.mall-menu div {
+	/* border: 1px solid red; */
+	width: 31%;
+	height: 10rem;
+	text-align: center;
+	padding: 0.625rem 0rem;
+	float: left;
+	box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, 0);
+	background: white;
+	border-radius: 0.3125rem;
+}
+
+.mall-menu div img {
+	display: block;
+	width: 90%;
+	border-radius: 0.3125rem;
+	margin: 0 auto;
+}
+
+.mall-menu div p {
+	position: relative;
+	top: 0.4rem;
+}
+
+.login-up {
+	float: left;
+	margin: -5.75rem auto;
+	width: 100%;
+	height: 7.5rem;
+	/* border-radius: 0 0 20px 20px; */
+	/* border: 3px solid black; */
+	border-top: none;
+	position: relative;
+	background-color: #b1e069;
+	overflow: hidden;
+
+}
+
+.login-up::before,
+.login-up::after {
+	content: '';
+	position: absolute;
+	width: 62.5rem;
+	height: 62.5rem;
+	border-radius: 55% 45%;
+	bottom: 85%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #a6db67;
+	animation: rotate 5s linear infinite;
+}
+
+.login-up::after {
+	left: 45%;
+	bottom: 80%;
+	border-radius: 45% 50%;
+	opacity: 0.3;
+}
+
+@keyframes rotate {
+	0% {
+		transform: translate(-50%) rotateZ(0deg);
+	}
+
+	100% {
+		transform: translate(-50%) rotateZ(360deg);
+	}
 }
