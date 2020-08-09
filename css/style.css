@@ -43,7 +43,12 @@
 
 .demo-menu div p {
 	position: relative;
-	top: 0.2rem;
+	top: 0.5rem;
+}
+
+.demo-tag {
+	position: relative;
+	top: 0.5rem !important;
 }
 
 .demo-title {
@@ -57,9 +62,9 @@
 .demo-menu-2 div {
 	/* border: 1px solid red; */
 	width: 33.3%;
-	height: 6.25rem;
+	height: 8rem;
 	text-align: center;
-	padding: 0.625rem 0.3125rem;
+	padding: 0.3125rem 0.625rem;
 	float: left;
 }
 
@@ -185,8 +190,71 @@
 	top: 2.5rem;
 	margin: 0.3125rem auto;
 	width: 80%;
-	height: 18.75rem;
+	height: 21rem;
 	box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, 0);
 	background: white;
 	margin-bottom: 3.125rem;
+	padding: 1.25rem;
+}
+
+.mui-radio input[type=radio]:checked:before {
+	content: '\e442';
+}
+
+.mui-radio input[type='radio']:checked:before,
+.mui-checkbox input[type='checkbox']:checked:before {
+	color: #abde6d;
+}
+
+.mui-radio input[type='radio']:before,
+.mui-checkbox input[type='checkbox']:before {
+	font-size: 1.25rem;
+	top: 0.125rem;
+	left: -0.125rem;
+	position: relative;
+}
+
+div.mui-input-row.mui-radio.mui-left::after,
+.mui-input-group:before,
+.mui-input-group:after {
+	display: none;
+}
+
+
+.type-menu {
+	overflow: hidden;
+}
+
+.type-menu div {
+	/* border: 1px solid red; */
+	width: 25%;
+	height: 6.875rem;
+	text-align: center;
+	padding: 0.9375rem 0rem;
+	float: left;
+}
+
+.type-menu div img {
+	display: block;
+	width: 3.8rem;
+	height: 3.8rem;
+	margin: 0 auto;
+	border-radius: 0rem;
+	padding: 0.3125rem;
+}
+
+.type-menu div p {
+	position: relative;
+	top: 0.2rem;
+	font-size: 0.625rem;
+}
+
+.float-button {
+	position: fixed;
+	width: 6.25rem;
+	bottom: 6.25rem;
+	right: 0rem;
+	background: #b4d145;
+	border-radius: 3.125rem 0 0 3.125rem;
+	box-shadow:0.05rem 0.05rem 0.05rem white;
 }

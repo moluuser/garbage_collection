@@ -19,10 +19,6 @@
 				plus.navigator.setStatusBarStyle('dark');
 				plus.navigator.setStatusBarBackground('white');
 			});
-
-			function f() {
-				alert(1);
-			}
 		</script>
 		<style>
 			.button {
@@ -36,10 +32,11 @@
 			}
 		</style>
 		<header class="mui-bar mui-bar-nav">
-			<h1 class="mui-title"></h1>
+			<h1 class="mui-title">个人中心</h1>
 		</header>
+		<img class="float-button" src="img/lightorder.png">
 		<div class="mui-content" style="background-color: #FFFFFF;">
-			<div style="background-size: contain; background-image: url(img/me.png);background-position: center 0;height: 220px;padding: 25px;"
+			<div style="background-size: contain; background-image: url(img/me.png);background-position: center 0;height: 13.75rem;padding: 3rem;"
 			 align="center">
 				<a href="#">
 					<img src="img/user.png" />
@@ -47,12 +44,12 @@
 				<div style="margin: 10px;color: #ffffff; z-index: 999;">用户名</div>
 				<button style="width:92px; height:30px; background-color:orange; border-radius:15px; color: #ffffff; margin-top: 5px;z-index: 999;">签到领积分</button>
 			</div>
-		</div>s
+		</div>
 		<div class="login-up"></div>
-		<div style="background-color:#ffffff;height: 300px;margin-top: 20px; padding: 30px 10px;">
+		<div style="background-color:#ffffff;height: 21.25rem;margin-top: 20px; padding: 30px 10px;">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-					<img src="img/order.png" class="mui-pull-left" style="margin-right: 10px;" />
+					<img width="20px" src="img/order.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						查看订单
 					</div>
@@ -61,7 +58,7 @@
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<img src="img/score.png" class="mui-pull-left" style="margin-right: 10px;" />
+					<img width="20px" src="img/score.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						积分查询
 					</div>
@@ -70,7 +67,7 @@
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<img src="img/setting.png" class="mui-pull-left" style="margin-right: 10px;" />
+					<img width="20px" src="img/setting.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						系统设置
 					</div>
@@ -79,16 +76,16 @@
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<img src="img/help.png" class="mui-pull-left" style="margin-right: 10px;" />
+					<img width="20px" src="img/oneorder.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
-						帮助中心
+						一键下单
 					</div>
 					<div>
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
 				<li class="mui-table-view-cell">
-					<img src="img/about.png" class="mui-pull-left" style="margin-right: 10px;" />
+					<img width="20px" src="img/about.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						关于我们
 					</div>
@@ -96,8 +93,17 @@
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
+				<li class="mui-table-view-cell">
+					<img width="20px" src="img/feedback.png" class="mui-pull-left" style="margin-right: 10px;" />
+					<div class="mui-media-body" style="line-height: 1.5rem;">
+						意见反馈
+					</div>
+					<div>
+						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
+					</div>
+				</li>
 				<!--添加分割线-->
-				<li class="mui-table-view-cell"></li>
+				<li></li>
 			</ul>
 		</div>
 	</body>
