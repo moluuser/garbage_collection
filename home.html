@@ -31,10 +31,10 @@
 			<div class="mui-input-row mui-search">
 				<input type="search" class="mui-input-clear" placeholder="输入您要搜索的内容">
 			</div>
-			<a class="mui-pull-right" href="msg.html"><span style="font-size: 1.25rem; line-height: 2.8125rem; color: #9b9b9b;"
+			<a id="to_msg" class="mui-pull-right"><span style="font-size: 1.25rem; line-height: 2.8125rem; color: #9b9b9b;"
 				 class="icon iconfont">&#xe606;</span></a>
 		</header>
-		<img class="float-button" src="img/lightorder.png">
+		<img id="to_order" class="float-button" src="img/lightorder.png">
 		<div class="mui-content">
 			<!-- 轮播图 -->
 			<!-- 750x390 -->
@@ -106,24 +106,19 @@
 						<div><img class="imgs" src="img/test.png"></div>
 					</div>
 				</div>
-				<div>
-					<div class="cell no3">
-						<div><img class="imgs" src="img/test.png"></div>
-					</div>
-					<div class="cell no4">
-						<div><img class="imgs" src="img/test.png"></div>
-					</div>
-				</div>
-				<div>
-					<div class="cell no3">
-						<div><img class="imgs" src="img/test.png"></div>
-					</div>
-					<div class="cell no4">
-						<div><img class="imgs" src="img/test.png"></div>
-					</div>
-				</div>
 			</div>
 			<!-- /宫格图片 -->
 		</div>
 	</body>
+<script src="js/castapp.js"></script>
+<script type="text/javascript" src="js/xlb.js"></script>
+<script>
+	var to_msg = ca.id('to_msg');
+	to_msg.addEventListener('tap', function() {
+		ca.newInterface({
+			url: 'msg.html',
+			id: 'msg'
+		});
+	});
+</script>
 </html>

@@ -34,7 +34,7 @@
 		<header class="mui-bar mui-bar-nav">
 			<h1 class="mui-title">个人中心</h1>
 		</header>
-		<img class="float-button" src="img/lightorder.png">
+		<img id="to_order" class="float-button" src="img/lightorder.png">
 		<div class="mui-content" style="background-color: #FFFFFF;">
 			<div style="background-size: contain; background-image: url(img/me.png);background-position: center 0;height: 13.75rem;padding: 3rem;"
 			 align="center">
@@ -48,7 +48,7 @@
 		<div class="login-up"></div>
 		<div style="background-color:#ffffff;height: 21.25rem;margin-top: 20px; padding: 30px 10px;">
 			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="to_orders">
 					<img width="20px" src="img/order.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						查看订单
@@ -57,7 +57,7 @@
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="to_score">
 					<img width="20px" src="img/score.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						积分查询
@@ -66,7 +66,7 @@
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="to_setting">
 					<img width="20px" src="img/setting.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						系统设置
@@ -84,7 +84,7 @@
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="to_about">
 					<img width="20px" src="img/about.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						关于我们
@@ -93,7 +93,7 @@
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="to_fb">
 					<img width="20px" src="img/feedback.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						意见反馈
@@ -107,4 +107,39 @@
 			</ul>
 		</div>
 	</body>
+	<script src="js/castapp.js"></script>
+	<script type="text/javascript" src="js/xlb.js"></script>
+	<script>
+		var to_about = ca.id('to_about');
+		to_about.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'about.html',
+				id: 'about'
+			});
+		});
+
+		var to_fb = ca.id('to_fb');
+		to_fb.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'feedback.html',
+				id: 'feedback'
+			});
+		});
+
+		var to_orders = ca.id('to_orders');
+		to_orders.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'order.html',
+				id: 'order'
+			});
+		});
+		
+		var to_setting = ca.id('to_setting');
+		to_setting.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'setting.html',
+				id: 'setting'
+			});
+		});
+	</script>
 </html>

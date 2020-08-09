@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<style>
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+						height: 100%;
+					}
+					.mui-col-xs-3,
+					.mui-control-content {
+						overflow-y: auto;
+						height: 100%;
+					}
+					.mui-segmented-control .mui-control-item {
+						line-height: 50px;
+						width: 100%;
+					}
+					.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+						background-color: #fff;
+					}
+				</style>
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">不可回收物</h1>
+		</header>
+		<img id="to_order" class="float-button" src="img/lightorder.png">
+		<div class="mui-content">
+			<div class="mui-row">
+				<div class="mui-col-xs-3">
+					<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+						<a class="mui-control-item mui-active" href="#content1"><img style="position: relative; top: 0.9375rem;" src="img/yanjin.png"><br>严禁投递物</a>
+						<a class="mui-control-item" href="#content2"><img style="position: relative; top: 0.9375rem;" src="img/weixian.png"><br>危险废弃物</a>
+						<a class="mui-control-item" href="#content3"><img style="position: relative; top: 0.9375rem;" src="img/qita.png"><br>其他不可回收</a>
+					</div>
+				</div>
+				<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+					<div id="content1" class="mui-control-content mui-active">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo211.png" />
+								<p>厨余垃圾</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo212.png" />
+								<p>烟 头</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo213.png" />
+								<p>砖 头</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo214.png" />
+								<p>烟花炮竹</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo215.png" />
+								<p>打火机</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo216.png" />
+								<p>木 头</p>
+							</div>
+						</div>
+					</div>
+					<div id="content2" class="mui-control-content">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo221.png" />
+								<p>荧光灯管</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo222.png" />
+								<p>废电池</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo223.png" />
+								<p>废温度计</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo224.png" />
+								<p>废血压计</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo225.png" />
+								<p>废药品</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo226.png" />
+								<p>废油漆</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo227.png" />
+								<p>废杀虫剂</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo228.png" />
+								<p>废胶片</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo229.png" />
+								<p>废相纸</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo2210.png" />
+								<p>消毒剂</p>
+							</div>
+
+						</div>
+					</div>
+					<div id="content3" class="mui-control-content">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo231.png" />
+								<p>砖 瓦</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo232.png" />
+								<p>渣 土</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo233.png" />
+								<p>卫生间废纸</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo234.png" />
+								<p>瓷器碎片</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo235.png" />
+								<p>抹 布</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo236.png" />
+								<p>锡 纸</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo237.png" />
+								<p>雨 衣</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo238.png" />
+								<p>海绵垫</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+	</body>
+
+	<script src="js/castapp.js"></script>
+	<script type="text/javascript" src="js/xlb.js"></script>
+</html>
