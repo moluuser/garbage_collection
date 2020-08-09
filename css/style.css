@@ -298,3 +298,18 @@ div.mui-input-row.mui-radio.mui-left::after,
 	right: 1.25rem;
 }
 
+.mui-table-view-cell:after {
+	width: 95%;
+    left: 2.5%;
+}
+
+.mui-table-view-cell {
+    position: relative;
+    overflow: hidden;
+    padding: 11px 15px;
+}
+
+.mui-slider-indicator.mui-segmented-control {
+    background-color: white;
+}
+
