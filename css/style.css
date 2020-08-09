@@ -256,5 +256,45 @@ div.mui-input-row.mui-radio.mui-left::after,
 	right: 0rem;
 	background: #b4d145;
 	border-radius: 3.125rem 0 0 3.125rem;
-	box-shadow:0.05rem 0.05rem 0.05rem white;
+	box-shadow: 0.05rem 0.05rem 0.05rem white;
 }
+
+.mui-icon-back:before,
+.mui-icon-left-nav:before {
+	color: #b4d145;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+	color: #b4d145;
+}
+
+#segmentedControlContents {
+	border-left: 0rem !important;
+}
+
+.mui-segmented-control.mui-segmented-control-inverted.mui-segmented-control-vertical .mui-control-item {
+	border-right: 1px solid #c8c7cc;
+}
+
+#segmentedControls a {
+	font-size: 0.75rem;
+}
+
+.order-panel {
+	/* border: 1px solid red; */
+	width: 95%;
+	height: 6.875rem;
+	text-align: center;
+	padding: 0.9375rem 0rem;
+	background-color: white;
+	margin: 0.625rem auto;
+	box-shadow: 0.05rem 0.05rem 0.05rem white;
+}
+
+.order-tip {
+	float: right;
+	position: relative;
+	bottom: 1.25rem;
+	right: 1.25rem;
+}
+

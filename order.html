@@ -9,8 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" href="css/iconfont.css">
 		<style>
-			.mui-slider-indicator {
-			    background-color: white;
+			.mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-progress-bar
+			{
+			    background-color: #b4d145!important;
+			}
+			.mui-slider .mui-segmented-control.mui-segmented-control-inverted ~ .mui-slider-group .mui-slider-item {
+			    border-bottom: 0px solid #c8c7cc;
 			}
 		</style>
 	</head>
@@ -71,13 +75,13 @@
 							<span style="color: #b2e278;" class="mui-icon mui-icon-location"></span>
 							<p>添加上门地址</p>
 						</div>
-
+						
 						<div class="order-panel" style="line-height: 4.8rem;">
 							<p>请添加您需要上门回收的物品吧</p>
 						</div>
 
 
-						<div class="order-panel" style="text-align: left; height: 9.375rem;">
+						<div class="order-panel" style="text-align: left; height: 14rem;">
 							<ul class="mui-table-view">
 								<li class="mui-table-view-cell">
 									<a class="mui-navigate-right">预约时间</a>
