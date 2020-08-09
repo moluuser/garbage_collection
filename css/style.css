@@ -257,6 +257,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	background: #b4d145;
 	border-radius: 3.125rem 0 0 3.125rem;
 	box-shadow: 0.05rem 0.05rem 0.05rem white;
+	z-index: 9999;
 }
 
 .mui-icon-back:before,
@@ -289,6 +290,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	background-color: white;
 	margin: 0.625rem auto;
 	box-shadow: 0.05rem 0.05rem 0.05rem white;
+	border-radius: 0.625rem;
 }
 
 .order-tip {
@@ -300,16 +302,75 @@ div.mui-input-row.mui-radio.mui-left::after,
 
 .mui-table-view-cell:after {
 	width: 95%;
-    left: 2.5%;
+	left: 2.5%;
 }
 
 .mui-table-view-cell {
-    position: relative;
-    overflow: hidden;
-    padding: 11px 15px;
+	position: relative;
+	overflow: hidden;
+	padding: 11px 15px;
 }
 
 .mui-slider-indicator.mui-segmented-control {
-    background-color: white;
+	background-color: white;
 }
 
+#no-order {
+	width: 50%;
+	margin: 0 auto;
+	margin-top: 20%;
+}
+
+.order-items {
+	/* border: 1px solid red; */
+	width: 95%;
+	height: 6.875rem;
+	padding: 0.3125rem 0rem;
+	background-color: white;
+	margin: 0.625rem auto;
+	padding: 0.5rem;
+	box-shadow: 0.05rem 0.05rem 0.05rem white;
+	border-radius: 0.625rem;
+}
+
+.order-header {
+	/* border: 1px solid red; */
+	float: initial;
+	
+}
+
+.order-img {
+	/* border: 1px solid red; */
+	width: 3.125rem;
+	height: 0.625rem;
+	position: relative;
+	float: left;
+}
+
+.order-detail{
+	/* border: 1px solid red; */
+	width: 80%;
+	float: right;
+	position: relative;
+	top: 20%;
+	padding: 0.3125rem;
+}
+ 
+ .order-foot {
+	float: right;
+	position: relative;
+	right: 0.3125rem;
+	bottom: -1.6rem;
+	color: #b4d145;
+}
+
+.order-money {
+	position: absolute;
+	top: 120%;
+}
+
+.order-num {
+	position: absolute;
+	top: 120%;
+	right: 5%;
+}
