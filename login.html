@@ -38,9 +38,9 @@
 			<div>
 				<a href="#"><img style="max-width: 100%; max-height: 100%; width: 100%;" src="img/login.png" /></a>
 			</div>
-			
+
 			<div class="login-card" style="height: 21rem;">
-				<form class="mui-input-group">
+				<form class="mui-input-group" action="javascript:;">
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem" class="mui-icon mui-icon-contact"></span>
 					<div class="mui-input-row">
 						<input class="reg-input" type="text" class="mui-input-clear" placeholder="用户名">
@@ -52,13 +52,13 @@
 					<br>
 					<br>
 					<div class="mui-button-row">
-						<button type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">登
+						<button id="btn_login" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">登
 							陆</button>
 						<br><br>
 						<a id="to_findpwd" type="button" style="color: #abde6d; font-size: 0.75rem">找回密码></button>
-					    <br><br>
-					    <a id="to_register" type="button" style="color: #abde6d; font-size: 0.75rem">注 册></button>
-					    <br>
+							<br><br>
+							<a id="to_register" type="button" style="color: #abde6d; font-size: 0.75rem">注 册></button>
+								<br>
 					</div>
 				</form>
 			</div>
@@ -70,19 +70,50 @@
 	<script>
 		ca.init();
 		var to_register = ca.id('to_register');
-		to_register.addEventListener('tap', function(){
+		to_register.addEventListener('tap', function() {
 			ca.newInterface({
-				url:'register.html',
-				id:'register'
+				url: 'register.html',
+				id: 'register'
 			});
 		});
-		
+
 		var to_findpwd = ca.id('to_findpwd');
-		to_findpwd.addEventListener('tap', function(){
+		to_findpwd.addEventListener('tap', function() {
 			ca.newInterface({
-				url:'findpwd.html',
-				id:'findpwd'
+				url: 'findpwd.html',
+				id: 'findpwd'
 			});
+		});
+
+		var input = ca.tagName('input');
+		var btn_login = ca.id('btn_login');
+		btn_login.addEventListener('tap', function() {
+			var uname = input['0'].value;
+			var pwd = input['1'].value;
+
+			if (uname == '') {
+				ca.prompt('请输入用户名');
+			}
+			if (pwd == '') {
+				ca.prompt('请输入密码');
+			}
+
+			ca.get({
+				url: request_url + '/User/login',
+				data: {
+					username: uname,
+					password: pwd,
+				},
+				succFn: function(data) {
+					if (data > 0) {
+						ca.prompt('登陆成功！');
+						localStorage.setItem('login_user', uname);
+					}else {
+						ca.prompt('用户名或密码错误！');
+					}
+
+				}
+			})
 		});
 	</script>
 </html>
