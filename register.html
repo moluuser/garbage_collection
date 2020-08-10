@@ -57,7 +57,7 @@
 					<br>
 					<div class="mui-input-row mui-radio mui-left">
 						<label style="font-size: 0.75rem;position: relative; left: -0.625rem">我已经同意</label>
-						<a id="login-xy" href="feedback.html">《xxxxxxxxxxx协议》</a>
+						<a class="login-xy" id="to_pact">《xxxxxxxxxxx协议》</a>
 						<input name="radio1" type="radio">
 					</div>
 					<br>
@@ -71,5 +71,14 @@
 	</body>
 
 <script src="js/castapp.js"></script>
-<script type="text/javascript" src="js/xlb.js"></script>
+<script>
+	ca.init();
+	var to_pact = ca.id('to_pact');
+	to_pact.addEventListener('tap', function(){
+		ca.newInterface({
+			url:'pact.html',
+			id:'pact'
+		});
+	});
+</script>
 </html>

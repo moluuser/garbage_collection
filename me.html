@@ -80,7 +80,7 @@
 						<a class="mui-navigate-right" href="javascript:;" onclick=""></a>
 					</div>
 				</li>
-				<li class="mui-table-view-cell">
+				<li class="mui-table-view-cell" id="to_go">
 					<img width="20px" src="img/oneorder.png" class="mui-pull-left" style="margin-right: 10px;" />
 					<div class="mui-media-body" style="line-height: 1.5rem;">
 						一键下单
@@ -152,6 +152,22 @@
 			ca.newInterface({
 				url: 'login.html',
 				id: 'login'
+			});
+		});
+
+		var to_score = ca.id('to_score');
+		to_score.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'score.html',
+				id: 'score'
+			});
+		});
+		
+		var to_go = ca.id('to_go');
+		to_go.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'go.html',
+				id: 'go'
 			});
 		});
 	</script>

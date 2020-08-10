@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">闪电下单</h1>
+		</header>
+		<div class="mui-content">
+			<div class="order-panel" style="line-height: 2.5rem;">
+				<span style="color: #b2e278;" class="mui-icon mui-icon-location"></span>
+				<p>添加上门地址</p>
+			</div>
+			
+			<div class="order-panel" style="line-height: 4.8rem;">
+				<p>请添加您需要上门回收的物品吧</p>
+			</div>
+			
+			
+			<div class="order-panel" style="text-align: left; height: 13.5rem;">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">预约时间</a>
+						<p class="order-tip">请选择预约上门时间</p>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">备注信息</a>
+						<p class="order-tip">可描述物品状态，特殊要求等</p>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right">上传照片</a>
+						<p class="order-tip">将需要回收的物品进行拍照</p>
+					</li>
+				</ul>
+			</div>
+			<button class="xrb-btn go-btn">闪电下单</button>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+</html>

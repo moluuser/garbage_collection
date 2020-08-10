@@ -8,6 +8,11 @@
 		<link href="css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" href="css/iconfont.css">
+		<style>
+			.mui-card-header:after, .mui-card-footer:before {
+			    display: none;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -22,36 +27,21 @@
 		</script>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">系统设置</h1>
+			<h1 class="mui-title">积分查询</h1>
 		</header>
 		<div class="mui-content">
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-				    <a class="mui-navigate-right" id="to_my">个人信息</a>
-				</li>
-				<li class="mui-table-view-cell">
-				    <a class="mui-navigate-right" id="to_pact">用户协议</a>
-				</li>
-			</ul>
-			<button class="feed-btn setting-btn">退出登陆</button>
+			<div class="mui-card">
+				<div class="mui-card-header">我的积分</div>
+				<!--内容区-->
+				<div class="mui-card-content" style="height: 3.125rem;">
+					<p class="score-data">55</p>
+				</div>
+				<div class="mui-card-footer">
+					<button class="xrb-btn score-btn" type="button" class="mui-btn">我要签到</button> 
+				</div>
+			</div>
+
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
-	<script>
-		ca.init();
-		var to_pact = ca.id('to_pact');
-		to_pact.addEventListener('tap', function(){
-			ca.newInterface({
-				url:'pact.html',
-				id:'pact'
-			});
-		});
-		var to_my = ca.id('to_my');
-		to_my.addEventListener('tap', function(){
-			ca.newInterface({
-				url:'my.html',
-				id:'my'
-			});
-		});
-	</script>
 </html>

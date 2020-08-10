@@ -22,36 +22,33 @@
 		</script>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">系统设置</h1>
+			<h1 class="mui-title">个人信息</h1>
 		</header>
 		<div class="mui-content">
-			<ul class="mui-table-view">
-				<li class="mui-table-view-cell">
-				    <a class="mui-navigate-right" id="to_my">个人信息</a>
-				</li>
-				<li class="mui-table-view-cell">
-				    <a class="mui-navigate-right" id="to_pact">用户协议</a>
-				</li>
-			</ul>
-			<button class="feed-btn setting-btn">退出登陆</button>
+			<div class="user-info">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell img-list">
+						<span>头像</span>
+						<img src="img/demo121.png" alt="" class="my-img" />
+					</li>
+					<li class="mui-table-view-cell">
+						<span>用户名</span>
+						<span class="mui-pull-right my-info">测试</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<span>手机号</span>
+						<span class="mui-pull-right my-info">测试</span>
+						</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<span>性别</span>
+						<span class="mui-pull-right my-info">测试</span>
+						</a>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
-	<script>
-		ca.init();
-		var to_pact = ca.id('to_pact');
-		to_pact.addEventListener('tap', function(){
-			ca.newInterface({
-				url:'pact.html',
-				id:'pact'
-			});
-		});
-		var to_my = ca.id('to_my');
-		to_my.addEventListener('tap', function(){
-			ca.newInterface({
-				url:'my.html',
-				id:'my'
-			});
-		});
-	</script>
 </html>

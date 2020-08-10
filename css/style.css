@@ -289,7 +289,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 .order-items {
 	/* border: 1px solid red; */
 	width: 95%;
-	height: 6.875rem;
+	height: 7.5rem;
 	padding: 0.3125rem 0rem;
 	background-color: white;
 	margin: 0.625rem auto;
@@ -300,32 +300,42 @@ div.mui-input-row.mui-radio.mui-left::after,
 
 .order-header {
 	/* border: 1px solid red; */
-	float: initial;
-
+	margin-left: 0.625rem;
+	margin-right: 0.625rem;
+	color: gray;
 }
 
 .order-img {
 	/* border: 1px solid red; */
-	width: 3.125rem;
-	height: 0.625rem;
-	position: relative;
+	width: 4.375rem;
+	height: 4.375rem;
 	float: left;
+	overflow: hidden;
+	padding: 0.0625rem;
+	padding-top: 0.3125rem;
+	left: 6%;
+	position: absolute;
+}
+
+.order-img img {
+	width: 100%;
+	height: 100%;
 }
 
 .order-detail {
 	/* border: 1px solid red; */
-	width: 80%;
+	width: 75%;
 	float: right;
 	position: relative;
-	top: 20%;
 	padding: 0.3125rem;
+	padding-left: 0.0625rem;
+	padding-top: 0.3125rem;
 }
 
 .order-foot {
-	float: right;
-	position: relative;
-	right: 0.3125rem;
-	bottom: -1.6rem;
+	position: absolute;
+	bottom: 0.75rem;
+	right: 2.5rem;
 	color: #b4d145;
 }
 
@@ -357,7 +367,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	z-index: 9999;
 }
 
-#login-xy {
+.login-xy {
 	color: #b4d145;
 	float: right;
 	position: relative;
@@ -396,7 +406,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	color: white;
 }
 
-#about-img{
+#about-img {
 	/* border: 1px solid red; */
 	width: 80%;
 	margin: 0 auto;
@@ -406,7 +416,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 }
 
 #about-img img {
-	width: 50%;
+	width: 40%;
 }
 
 #about-info {
@@ -415,4 +425,61 @@ div.mui-input-row.mui-radio.mui-left::after,
 	text-align: center;
 	position: absolute;
 	bottom: 5%;
+}
+
+.setting-btn {
+	width: 90%;
+	position: absolute;
+	left: 5%;
+	margin-top: 5%;
+}
+
+.score-data {
+	font-size: 2.8125rem;
+	margin-top: 1.25rem;
+	margin-left: 1.25rem;
+	color: #b4d145;
+}
+
+.xrb-btn {
+	background-color: #b4d145;
+	color: white;
+}
+
+.score-btn {
+	position: absolute;
+	right: 5%;
+	bottom: 0.625rem
+}
+
+.go-btn {
+	width: 90%;
+	position: absolute;
+	left: 5%;
+	margin-top: 0.625rem;
+}
+
+.order-btn {
+	width: 90%;
+	margin-left: 5%;
+	margin-top: 0.625rem;
+}
+
+
+.img-list {
+	padding: 15px;
+	position: relative;
+}
+
+.my-info {
+	color: gray;
+}
+
+.my-img {
+	width: 40px;
+	height: 40px;
+	border-radius: 100px;
+	position: absolute;
+	top: 0.3125rem;
+	right: 0.8125rem;
 }
