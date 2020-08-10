@@ -353,7 +353,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 .me-name {
 	color: white;
 	position: relative;
-	top: -6%;
+	top: -0%;
 	text-align: center;
 }
 
@@ -504,4 +504,18 @@ input[type='color'] {
 	position: absolute;
 	top: 0.3125rem;
 	right: 0.8125rem;
+}
+
+
+.me-avatar {
+	/* border: 1px solid red; */
+	width: 4.375rem;
+	height: 4.375rem;
+	overflow: hidden;
+	border-radius: 50%;
+}
+
+.me-avatar img {
+	width: 100%;
+	height: 100%;
 }

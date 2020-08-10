@@ -38,14 +38,17 @@
 		<div class="mui-content" style="background-color: #FFFFFF;">
 			<div style="background-size: contain; background-image: url(img/me.png);background-position: center 0;height: 13.75rem;padding: 3rem;"
 			 align="center">
-				<a href="#">
-					<img src="img/user.png" />
-				</a>
-				<div id="to_login" class="me-name">
+				<div class="me-avatar">
+					<img class="login-after" src="img/user.png" />
+					<!-- 登陆成功 -->
+					<img class="login-succ" src="img/user.png" style="display: none;" />
+				</div>
+				<div id="to_login" class="me-name login-after">
 					登陆/注册
 				</div>
-				<div id="to_" class="me-name" style="display: none;">
-					用户名
+				<!-- 登陆成功 -->
+				<div class="login-succ me-name" id="to_my" style="display: none;">
+					登陆成功
 				</div>
 				<button class="me-qd">签到领积分</button>
 			</div>
@@ -162,7 +165,7 @@
 				id: 'score'
 			});
 		});
-		
+
 		var to_go = ca.id('to_go');
 		to_go.addEventListener('tap', function() {
 			ca.newInterface({
@@ -170,5 +173,50 @@
 				id: 'go'
 			});
 		});
+
+		var to_my = ca.id('to_my');
+		to_my.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'my.html',
+				id: 'my'
+			});
+		});
+		
+		var login_succ = ca.className('login-succ');
+		var login_after = ca.className('login-after');
+		
+		get_user();
+		function get_user(){
+			var login_user = localStorage.getItem('login_user');
+			ca.get({
+				url:request_url+'/User/getUserByName',
+				data:{
+					username:login_user
+				},
+				succFn:function(data){
+					if (data){
+						var json = JSON.parse(data);
+						// alert(json)
+						login_after['0'].style.display = "none";
+						login_succ['0'].style.display = "block";
+						login_after['1'].style.display = "none";
+						login_succ['1'].style.display = "block";
+						login_succ['1'].innerHTML = json.username;
+						if (json.avatar) {
+							login_succ['0'].src = json.avatar;
+						}
+						
+						
+					}else{
+						login_after['0'].style.display = "block";
+						login_succ['0'].style.display = "none";
+						login_after['1'].style.display = "block";
+						login_succ['1'].style.display = "none";
+					}
+					
+					
+				}
+			})
+		}
 	</script>
 </html>

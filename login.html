@@ -108,7 +108,10 @@
 					if (data > 0) {
 						ca.prompt('登陆成功！');
 						localStorage.setItem('login_user', uname);
-					}else {
+						ca.getStartInterface(function(obj) {
+							obj.show();
+						});
+					} else {
 						ca.prompt('用户名或密码错误！');
 					}
 
