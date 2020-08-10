@@ -138,40 +138,6 @@
 	top: 0.4rem;
 }
 
-.login-up {
-	float: left;
-	margin: -5.75rem auto;
-	width: 100%;
-	height: 7.5rem;
-	/* border-radius: 0 0 20px 20px; */
-	/* border: 3px solid black; */
-	border-top: none;
-	position: relative;
-	background-color: #b1e069;
-	overflow: hidden;
-
-}
-
-.login-up::before,
-.login-up::after {
-	content: '';
-	position: absolute;
-	width: 62.5rem;
-	height: 62.5rem;
-	border-radius: 55% 45%;
-	bottom: 85%;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: #a6db67;
-	animation: rotate 5s linear infinite;
-}
-
-.login-up::after {
-	left: 45%;
-	bottom: 80%;
-	border-radius: 45% 50%;
-	opacity: 0.3;
-}
 
 @keyframes rotate {
 	0% {
@@ -190,7 +156,6 @@
 	top: 2.5rem;
 	margin: 0.3125rem auto;
 	width: 80%;
-	height: 21rem;
 	box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, 0);
 	background: white;
 	margin-bottom: 3.125rem;
@@ -336,7 +301,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 .order-header {
 	/* border: 1px solid red; */
 	float: initial;
-	
+
 }
 
 .order-img {
@@ -347,7 +312,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	float: left;
 }
 
-.order-detail{
+.order-detail {
 	/* border: 1px solid red; */
 	width: 80%;
 	float: right;
@@ -355,8 +320,8 @@ div.mui-input-row.mui-radio.mui-left::after,
 	top: 20%;
 	padding: 0.3125rem;
 }
- 
- .order-foot {
+
+.order-foot {
 	float: right;
 	position: relative;
 	right: 0.3125rem;
@@ -380,4 +345,44 @@ div.mui-input-row.mui-radio.mui-left::after,
 	position: relative;
 	top: -6%;
 	text-align: center;
+}
+
+.me-qd {
+	width: 5.75rem;
+	height: 2rem;
+	background-color: orange;
+	border-radius: 0.9375rem;
+	color: #ffffff;
+	margin-top: 0.625rem;
+	z-index: 9999;
+}
+
+#login-xy {
+	color: #b4d145;
+	float: right;
+	position: relative;
+	top: -72%;
+	font-size: 0.75rem;
+	left: 0rem;
+}
+
+.yzm-btn {
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	background-color: #b4d145;
+	color: white;
+}
+
+.yzm span {
+	display: none;
+}
+
+.mui-input-row .mui-input-clear ~ .mui-icon-clear.mui-active, .mui-input-row .mui-input-speech ~ .mui-icon-speech.mui-active, .mui-input-row .mui-input-password ~ .mui-icon-eye.mui-active {
+    color: #b4d145;
+}
+
+.reg-input {
+	position: relative;
+	left: 15%;
 }

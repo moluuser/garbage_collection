@@ -31,37 +31,34 @@
 			});
 		</script>
 		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">用户登陆</h1>
 		</header>
 		<div class="mui-content">
 			<div>
 				<a href="#"><img style="max-width: 100%; max-height: 100%; width: 100%;" src="img/login.png" /></a>
 			</div>
-			<div class="login-up">
-			</div>
-			<div class="login-card">
+			
+			<div class="login-card" style="height: 21rem;">
 				<form class="mui-input-group">
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem" class="mui-icon mui-icon-contact"></span>
 					<div class="mui-input-row">
-						<input style="position: relative; left: 2.5rem" type="text" class="mui-input-clear" placeholder="手机号">
+						<input class="reg-input" type="text" class="mui-input-clear" placeholder="用户名">
 					</div>
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
-					<div class="mui-input-row yzm">
-						<input style="position: relative; left: 2.5rem;" type="text" class="mui-input-clear" placeholder="验证码">
-						<button class="yzm-btn">验证码</button>
+					<div class="mui-input-row">
+						<input class="reg-input" type="password" class="mui-input-password" placeholder="密码">
 					</div>
 					<br>
-					<div class="mui-input-row mui-radio mui-left">
-						<label style="font-size: 0.75rem;position: relative; left: -0.625rem">我已经同意《xxx协议》</label>
-						<input name="radio1" type="radio">
-					</div>
 					<br>
 					<div class="mui-button-row">
 						<button type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">登
 							陆</button>
 						<br><br>
-						<a type="button" style="color: #abde6d; font-size: 0.75rem">注 册></button>
-
+						<a id="to_findpwd" type="button" style="color: #abde6d; font-size: 0.75rem">找回密码></button>
+					    <br><br>
+					    <a id="to_register" type="button" style="color: #abde6d; font-size: 0.75rem">注 册></button>
+					    <br>
 					</div>
 				</form>
 			</div>
@@ -69,6 +66,23 @@
 		</div>
 	</body>
 
-<script src="js/castapp.js"></script>
-<script type="text/javascript" src="js/xlb.js"></script>
+	<script src="js/castapp.js"></script>
+	<script type="text/javascript" src="js/xlb.js"></script>
+	<script>
+		var to_register = ca.id('to_register');
+		to_register.addEventListener('tap', function(){
+			ca.newInterface({
+				url:'register.html',
+				id:'register'
+			});
+		});
+		
+		var to_findpwd = ca.id('to_findpwd');
+		to_findpwd.addEventListener('tap', function(){
+			ca.newInterface({
+				url:'findpwd.html',
+				id:'findpwd'
+			});
+		});
+	</script>
 </html>
