@@ -41,8 +41,11 @@
 				<a href="#">
 					<img src="img/user.png" />
 				</a>
-				<div class="me-name">
+				<div id="to_login" class="me-name">
 					登陆/注册
+				</div>
+				<div id="to_" class="me-name" style="display: none;">
+					用户名
 				</div>
 				<button class="me-qd">签到领积分</button>
 			</div>
@@ -135,12 +138,20 @@
 				id: 'order'
 			});
 		});
-		
+
 		var to_setting = ca.id('to_setting');
 		to_setting.addEventListener('tap', function() {
 			ca.newInterface({
 				url: 'setting.html',
 				id: 'setting'
+			});
+		});
+
+		var to_login = ca.id('to_login');
+		to_login.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'login.html',
+				id: 'login'
 			});
 		});
 	</script>

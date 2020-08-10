@@ -10,9 +10,9 @@
 
 .mui-search {
 	position: absolute;
-	left: 50%;
+	left: 46%;
 	top: 50%;
-	width: 78%;
+	width: 86%;
 	transform: translate(-50%, -50%);
 }
 
@@ -378,11 +378,41 @@ div.mui-input-row.mui-radio.mui-left::after,
 	display: none;
 }
 
-.mui-input-row .mui-input-clear ~ .mui-icon-clear.mui-active, .mui-input-row .mui-input-speech ~ .mui-icon-speech.mui-active, .mui-input-row .mui-input-password ~ .mui-icon-eye.mui-active {
-    color: #b4d145;
+.mui-input-row .mui-input-clear~.mui-icon-clear.mui-active,
+.mui-input-row .mui-input-speech~.mui-icon-speech.mui-active,
+.mui-input-row .mui-input-password~.mui-icon-eye.mui-active {
+	color: #b4d145;
 }
 
 .reg-input {
 	position: relative;
 	left: 15%;
+}
+
+.feed-btn {
+	width: 100%;
+	height: 2.5rem;
+	background-color: #b4d145;
+	color: white;
+}
+
+#about-img{
+	/* border: 1px solid red; */
+	width: 80%;
+	margin: 0 auto;
+	overflow: hidden;
+	text-align: center;
+	margin-top: 20%;
+}
+
+#about-img img {
+	width: 50%;
+}
+
+#about-info {
+	width: 80%;
+	left: 10%;
+	text-align: center;
+	position: absolute;
+	bottom: 5%;
 }
