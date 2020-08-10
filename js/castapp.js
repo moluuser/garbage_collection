@@ -1674,4 +1674,4 @@ window.dongyi = window.dj = window.castapp = window.ca =  {
 })();
 
 
-var request_url = 'http://39.96.82.182:6100';
+var request_url = 'http://39.96.82.182:6100/api';

@@ -27,31 +27,56 @@
 		<div class="mui-content">
 			<ul class="mui-table-view">
 				<li class="mui-table-view-cell">
-				    <a class="mui-navigate-right" id="to_my">个人信息</a>
+					<a class="mui-navigate-right" id="to_my">个人信息</a>
 				</li>
 				<li class="mui-table-view-cell">
-				    <a class="mui-navigate-right" id="to_pact">用户协议</a>
+					<a class="mui-navigate-right" id="to_findpwd">更改密码</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="to_pact">用户协议</a>
 				</li>
 			</ul>
-			<button class="feed-btn setting-btn">退出登陆</button>
+			<button class="feed-btn setting-btn" id="loginout">退出登陆</button>
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
 	<script>
 		ca.init();
 		var to_pact = ca.id('to_pact');
-		to_pact.addEventListener('tap', function(){
+		to_pact.addEventListener('tap', function() {
 			ca.newInterface({
-				url:'pact.html',
-				id:'pact'
+				url: 'pact.html',
+				id: 'pact'
 			});
 		});
 		var to_my = ca.id('to_my');
-		to_my.addEventListener('tap', function(){
+		to_my.addEventListener('tap', function() {
 			ca.newInterface({
-				url:'my.html',
-				id:'my'
+				url: 'my.html',
+				id: 'my'
 			});
+		});
+
+		var to_findpwd = ca.id('to_findpwd');
+		to_findpwd.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'findpwd.html',
+				id: 'findpwd'
+			});
+		});
+		var loginout = ca.id('loginout');
+		var login_user = localStorage.getItem('login_user');
+		//退出登录
+		loginout.addEventListener('tap', function() {
+			if (login_user) {
+				ca.closeCurrentInterface();
+				localStorage.removeItem('login_user');
+				//底部导航初始化
+				ca.tabBarInit(true, '');
+				ca.prompt('退出成功！');
+			} else {
+				ca.prompt('您还没有登录！');
+			}
 		});
 	</script>
 </html>

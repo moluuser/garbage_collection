@@ -18,6 +18,29 @@
 				})
 			});
 		</script>
+		<style>
+			select,
+			textarea,
+			input[type='text'],
+			input[type='search'],
+			input[type='password'],
+			input[type='datetime'],
+			input[type='datetime-local'],
+			input[type='date'],
+			input[type='month'],
+			input[type='time'],
+			input[type='week'],
+			input[type='number'],
+			input[type='email'],
+			input[type='url'],
+			input[type='tel'],
+			input[type='color'] {
+				width: 80%;
+				position: relative;
+				left: 15%;
+				overflow: hidden;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -31,14 +54,14 @@
 			});
 		</script>
 		<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>		
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">用户注册</h1>
 		</header>
 		<div class="mui-content">
 			<div>
 				<a href="#"><img style="max-width: 100%; max-height: 100%; width: 100%;" src="img/login.png" /></a>
 			</div>
-			
+
 			<div class="login-card" style="height: 24rem;">
 				<form class="mui-input-group">
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem" class="mui-icon mui-icon-contact"></span>
@@ -52,11 +75,11 @@
 					</div> -->
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
 					<div class="mui-input-row">
-					        <input class="reg-input" type="password" class="mui-input-password" placeholder="密码">
+						<input class="reg-input" type="password" class="mui-input-password" placeholder="密码">
 					</div>
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
 					<div class="mui-input-row">
-					        <input class="reg-input" type="password" class="mui-input-password" placeholder="确认密码">
+						<input class="reg-input" type="password" class="mui-input-password" placeholder="确认密码">
 					</div>
 					<br>
 					<div class="mui-input-row mui-radio mui-left">
@@ -66,7 +89,8 @@
 					</div>
 					<br>
 					<div class="mui-button-row">
-						<button type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">注 册</button>
+						<button type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">注
+							册</button>
 					</div>
 				</form>
 			</div>
@@ -74,15 +98,15 @@
 		</div>
 	</body>
 
-<script src="js/castapp.js"></script>
-<script>
-	ca.init();
-	var to_pact = ca.id('to_pact');
-	to_pact.addEventListener('tap', function(){
-		ca.newInterface({
-			url:'pact.html',
-			id:'pact'
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var to_pact = ca.id('to_pact');
+		to_pact.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'pact.html',
+				id: 'pact'
+			});
 		});
-	});
-</script>
+	</script>
 </html>

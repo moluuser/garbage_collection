@@ -118,6 +118,8 @@
 	<script src="js/castapp.js"></script>
 	<script type="text/javascript" src="js/xlb.js"></script>
 	<script>
+		var login_user = localStorage.getItem('login_user');
+		// alert(login_user);
 		var to_about = ca.id('to_about');
 		to_about.addEventListener('tap', function() {
 			ca.newInterface({
@@ -136,10 +138,18 @@
 
 		var to_orders = ca.id('to_orders');
 		to_orders.addEventListener('tap', function() {
-			ca.newInterface({
-				url: 'order.html',
-				id: 'order'
-			});
+			if (login_user){
+				ca.newInterface({
+					url: 'order.html',
+					id: 'order'
+				});
+			}else {
+				ca.newInterface({
+					url: 'login.html',
+					id: 'login'
+				});
+			}
+			
 		});
 
 		var to_setting = ca.id('to_setting');
@@ -187,7 +197,6 @@
 		
 		get_user();
 		function get_user(){
-			var login_user = localStorage.getItem('login_user');
 			ca.get({
 				url:request_url+'/User/getUserByName',
 				data:{
@@ -196,7 +205,7 @@
 				succFn:function(data){
 					if (data){
 						var json = JSON.parse(data);
-						// alert(json)
+						localStorage.setItem('login_id', json.uid);
 						login_after['0'].style.display = "none";
 						login_succ['0'].style.display = "block";
 						login_after['1'].style.display = "none";
@@ -205,16 +214,12 @@
 						if (json.avatar) {
 							login_succ['0'].src = json.avatar;
 						}
-						
-						
 					}else{
 						login_after['0'].style.display = "block";
 						login_succ['0'].style.display = "none";
 						login_after['1'].style.display = "block";
 						login_succ['1'].style.display = "none";
 					}
-					
-					
 				}
 			})
 		}
