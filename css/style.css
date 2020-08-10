@@ -374,3 +374,10 @@ div.mui-input-row.mui-radio.mui-left::after,
 	top: 120%;
 	right: 5%;
 }
+
+.me-name {
+	color: white;
+	position: relative;
+	top: -6%;
+	text-align: center;
+}
