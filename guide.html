@@ -27,12 +27,18 @@
 		<div class="mui-content">
 			<div><a href="#"><img style="max-width: 100%; max-height: 100%;" src="img/guide.png" /></a></div>
 			<div class="guide-text">
-				<p style="word-break:break-word; font-size: 1.4rem; color: #2d2d2d;">
-					后台可以设置此处通知
+				<p id="guidetext" style="word-break:break-word; font-size: 1.4rem; color: #2d2d2d;">
+					
 				</p>
 			</div>
 		</div>
 	</body>
 <script src="js/castapp.js"></script>
 <script type="text/javascript" src="js/xlb.js"></script>
+<script>
+	// 显示回收指南
+	var guide_msg = localStorage.getItem('guide_msg');
+	var guide_box = ca.id('guidetext');
+	guide_box.innerHTML = guide_msg;
+</script>
 </html>

@@ -113,15 +113,40 @@
 			<!-- /宫格图片 -->
 		</div>
 	</body>
-<script src="js/castapp.js"></script>
-<script type="text/javascript" src="js/xlb.js"></script>
-<script>
-	var to_msg = ca.id('to_msg');
-	to_msg.addEventListener('tap', function() {
-		ca.newInterface({
-			url: 'msg.html',
-			id: 'msg'
+	<script src="js/castapp.js"></script>
+	<script type="text/javascript" src="js/xlb.js"></script>
+	<script>
+		var to_msg = ca.id('to_msg');
+		to_msg.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'msg.html',
+				id: 'msg'
+			});
 		});
-	});
-</script>
+		
+		var imgs = ca.className('imgs');
+		
+		get_info();
+
+		function get_info() {
+			ca.get({
+				url: request_url + '/App/getAppInfo',
+				data: {
+
+				},
+				succFn: function(data) {
+					if (data) {
+						var json = JSON.parse(data);
+						var guide_msg = json['guide_msg'];
+						localStorage.setItem('guide_msg', guide_msg);
+						imgs['0'].src = json['index1'];
+						imgs['1'].src = json['index2'];
+						imgs['2'].src = json['index3'];
+						imgs['3'].src = json['index4'];
+					} else {
+					}
+				}
+			})
+		}
+	</script>
 </html>
