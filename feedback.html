@@ -40,18 +40,21 @@
 				</form>
 			</div>
 			<br>
-			<button class="feed-btn">提交</button>
+			<button id="feed_btn" class="feed-btn">提交</button>
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
 	<script>
 		ca.init();
-		var feed_btn = ca.className()('feed-btn');
+		var feed_btn = ca.id('feed_btn');
 		var login_user = localStorage.getItem('login_user');
-		feed_btn['0'].addEventListener('tap', function() {
-			var fmsg = ca.id('feed-msg');
-			var ftel = ca.id('feed-tel');
-			if (msg == '') {
+		if(!login_user){
+			login_user = '未登录';
+		}
+		feed_btn.addEventListener('tap', function() {
+			var fmsg = ca.id('feed-msg').value;
+			var ftel = ca.id('feed-tel').value;
+			if (fmsg == '') {
 				ca.prompt('您未填写意见！');
 				return;
 			} else {
@@ -64,15 +67,13 @@
 					},
 					succFn: function(data) {
 						if (data > 0) {
-							ca.prompt('感谢您宝贵的意见！');
-							ca.closeCurrentInterface();
+							ca.prompt('提交成功！感谢您的意见！');
 						} else {
 							ca.prompt('提交失败！');
 						}
 					}
 				})
 			}
-
 		});
 	</script>
 </html>

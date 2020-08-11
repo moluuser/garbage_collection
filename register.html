@@ -118,19 +118,19 @@
 			var pact = $('input[name="radio1"]:checked').val();
 
 			if (uname == '') {
-				ca.prompt('请输入用户名');
+				ca.prompt('请输入用户名！');
 				return;
 			} else if (pwd == '') {
-				ca.prompt('请输入密码');
+				ca.prompt('请输入密码！');
 				return;
 			} else if (repwd == '') {
-				ca.prompt('请输入确认密码');
+				ca.prompt('请输入确认密码！');
 				return;
 			} else if (pwd != repwd) {
-				ca.prompt('两次密码不一致');
+				ca.prompt('两次密码不一致！');
 				return;
 			} else if (pact != 'on') {
-				ca.prompt('请同意用户协议');
+				ca.prompt('请同意用户协议！');
 				return;
 			}
 

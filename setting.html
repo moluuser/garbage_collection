@@ -51,18 +51,26 @@
 		});
 		var to_my = ca.id('to_my');
 		to_my.addEventListener('tap', function() {
-			ca.newInterface({
-				url: 'my.html',
-				id: 'my'
-			});
+			if (login_user) {
+				ca.newInterface({
+					url: 'my.html',
+					id: 'my'
+				});
+			} else {
+				ca.prompt('您还没有登录！');
+			}
 		});
 
 		var to_findpwd = ca.id('to_findpwd');
 		to_findpwd.addEventListener('tap', function() {
-			ca.newInterface({
-				url: 'findpwd.html',
-				id: 'findpwd'
-			});
+			if (login_user) {
+				ca.newInterface({
+					url: 'changepwd.html',
+					id: 'changepwd'
+				});
+			} else {
+				ca.prompt('您还没有登录！');
+			}
 		});
 		var loginout = ca.id('loginout');
 		var login_user = localStorage.getItem('login_user');
@@ -71,6 +79,7 @@
 			if (login_user) {
 				ca.closeCurrentInterface();
 				localStorage.removeItem('login_user');
+				localStorage.removeItem('login_id');
 				//底部导航初始化
 				ca.tabBarInit(true, '');
 				ca.prompt('退出成功！');

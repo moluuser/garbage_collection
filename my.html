@@ -27,28 +27,69 @@
 		<div class="mui-content">
 			<div class="user-info">
 				<ul class="mui-table-view">
-					<li class="mui-table-view-cell img-list">
+					<li class="mui-table-view-cell img-list" id="myimg">
 						<span>头像</span>
-						<img src="img/demo121.png" alt="" class="my-img" />
+						<img id="my_img" src="img/user.png" class="my-img" />
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="myname">
 						<span>用户名</span>
-						<span class="mui-pull-right my-info">测试</span>
-						</a>
+						<span id="my_uname" class="mui-pull-right my-info"></span>
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="mytel">
 						<span>手机号</span>
-						<span class="mui-pull-right my-info">测试</span>
-						</a>
+						<span id="my_tel" class="mui-pull-right my-info">未填写</span>
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="mysex">
 						<span>性别</span>
-						<span class="mui-pull-right my-info">测试</span>
-						</a>
+						<span id="my_sex" class="mui-pull-right my-info">未填写</span>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
+<script>
+		ca.init();
+		var login_user = localStorage.getItem('login_user')
+		var my_uname = ca.id('my_uname');
+		var my_img = ca.id('my_img');
+		var my_tel = ca.id('my_tel');
+		var my_sex = ca.id('my_sex');
+		
+		var myuname = ca.id('myuname');
+		var myimg = ca.id('myimg');
+		var mytel = ca.id('mytel');
+		var mysex = ca.id('mysex');
+		
+		myname.addEventListener('tap', function() {
+			ca.prompt('用户名不允许修改！');
+		});
+		
+		get_user();
+		function get_user(){
+			ca.get({
+				url:request_url+'/User/getUserByName',
+				data:{
+					username:login_user
+				},
+				succFn:function(data){
+					if (data){
+						var json = JSON.parse(data);
+						my_uname.innerHTML = json.username;
+						if (json.avatar) {
+							my_img.src = json.avatar;
+						}
+						if (json.tel) {
+							my_tel.innerHTML = json.tel;
+						}
+						if (json.sex) {
+							my_sex.innerHTML = json.sex;
+						}
+					}else{
+						ca.prompt('系统错误！');
+					}
+				}
+			})
+		}
+	</script>
 </html>

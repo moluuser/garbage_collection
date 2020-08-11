@@ -139,6 +139,41 @@
 }
 
 
+.login-up {
+	float: left;
+	margin: -5.75rem auto;
+	width: 100%;
+	height: 7.5rem;
+	/* border-radius: 0 0 20px 20px; */
+	/* border: 3px solid black; */
+	border-top: none;
+	position: relative;
+	background-color: #b1e069;
+	overflow: hidden;
+
+}
+
+.login-up::before,
+.login-up::after {
+	content: '';
+	position: absolute;
+	width: 62.5rem;
+	height: 62.5rem;
+	border-radius: 55% 45%;
+	bottom: 85%;
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #a6db67;
+	animation: rotate 5s linear infinite;
+}
+
+.login-up::after {
+	left: 45%;
+	bottom: 80%;
+	border-radius: 45% 50%;
+	opacity: 0.3;
+}
+
 @keyframes rotate {
 	0% {
 		transform: translate(-50%) rotateZ(0deg);
@@ -353,7 +388,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 .me-name {
 	color: white;
 	position: relative;
-	top: -0%;
+	top: 0.625rem;
 	text-align: center;
 }
 
@@ -363,7 +398,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	background-color: orange;
 	border-radius: 0.9375rem;
 	color: #ffffff;
-	margin-top: 0.625rem;
+	margin-top: 1.25rem;
 	z-index: 9999;
 }
 
