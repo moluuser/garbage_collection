@@ -11,7 +11,7 @@
 		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script>
 			$(function() {
-				var flag = true;
+				var flag = false;
 				$("input:radio").click(function() {
 					$(this).prop("checked", flag);
 					flag = !flag;
@@ -63,7 +63,7 @@
 			</div>
 
 			<div class="login-card" style="height: 24rem;">
-				<form class="mui-input-group">
+				<form class="mui-input-group" action="javascript:;">
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem" class="mui-icon mui-icon-contact"></span>
 					<div class="mui-input-row">
 						<input class="reg-input" type="text" class="mui-input-clear" placeholder="用户名">
@@ -75,7 +75,7 @@
 					</div> -->
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
 					<div class="mui-input-row">
-						<input class="reg-input" type="password" class="mui-input-password" placeholder="密码">
+						<input type="password" class="mui-input-password" placeholder="密码">
 					</div>
 					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
 					<div class="mui-input-row">
@@ -89,7 +89,7 @@
 					</div>
 					<br>
 					<div class="mui-button-row">
-						<button type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">注
+						<button id="btn_reg" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 12.5rem; border-radius: 1.25rem;">注
 							册</button>
 					</div>
 				</form>
@@ -107,6 +107,64 @@
 				url: 'pact.html',
 				id: 'pact'
 			});
+		});
+
+		var input = ca.tagName('input');
+		var btn_reg = ca.id('btn_reg');
+		btn_reg.addEventListener('tap', function() {
+			var uname = input['0'].value;
+			var pwd = input['1'].value;
+			var repwd = input['2'].value;
+			var pact = $('input[name="radio1"]:checked').val();
+
+			if (uname == '') {
+				ca.prompt('请输入用户名');
+				return;
+			} else if (pwd == '') {
+				ca.prompt('请输入密码');
+				return;
+			} else if (repwd == '') {
+				ca.prompt('请输入确认密码');
+				return;
+			} else if (pwd != repwd) {
+				ca.prompt('两次密码不一致');
+				return;
+			} else if (pact != 'on') {
+				ca.prompt('请同意用户协议');
+				return;
+			}
+
+
+			ca.get({
+				url: request_url + '/User/getUserByName',
+				data: {
+					username: uname,
+				},
+				succFn: function(data) {
+					if (data != 0) {
+						ca.prompt('用户名已存在！');
+						return;
+					} else {
+						ca.get({
+							url: request_url + '/User/addUser',
+							data: {
+								username: uname,
+								password: pwd,
+							},
+							succFn: function(data) {
+								if (data != 0) {
+									ca.prompt('注册成功！');
+									ca.getStartInterface(function(obj) {
+										obj.show();
+									});
+								} else {
+									ca.prompt('注册失败！');
+								}
+							}
+						})
+					}
+				}
+			})
 		});
 	</script>
 </html>

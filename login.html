@@ -116,9 +116,10 @@
 
 			if (uname == '') {
 				ca.prompt('请输入用户名');
-			}
-			if (pwd == '') {
+				return;
+			} else if (pwd == '') {
 				ca.prompt('请输入密码');
+				return;
 			}
 
 			ca.get({
