@@ -80,6 +80,10 @@
 				ca.closeCurrentInterface();
 				localStorage.removeItem('login_user');
 				localStorage.removeItem('login_id');
+				var arr = ['me.html'];
+				ca.sendNotice(arr, 'update', {});
+
+				ca.closeCurrentInterface();
 				//底部导航初始化
 				ca.tabBarInit(true, '');
 				ca.prompt('退出成功！');

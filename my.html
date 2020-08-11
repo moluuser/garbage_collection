@@ -65,6 +65,16 @@
 			ca.prompt('用户名不允许修改！');
 		});
 
+		myimg.addEventListener('tap', function() {
+			var arr = ['照相机', '相册'];
+			ca.actionSheet(arr, {
+				succFn: function(data) {
+					alert(data);
+				},
+				isUpload: true,
+
+			});
+		});
 		get_user();
 
 		function get_user() {
