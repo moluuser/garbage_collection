@@ -48,32 +48,33 @@
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
-<script>
+	<script>
 		ca.init();
 		var login_user = localStorage.getItem('login_user')
 		var my_uname = ca.id('my_uname');
 		var my_img = ca.id('my_img');
 		var my_tel = ca.id('my_tel');
 		var my_sex = ca.id('my_sex');
-		
+
 		var myuname = ca.id('myuname');
 		var myimg = ca.id('myimg');
 		var mytel = ca.id('mytel');
 		var mysex = ca.id('mysex');
-		
+
 		myname.addEventListener('tap', function() {
 			ca.prompt('用户名不允许修改！');
 		});
-		
+
 		get_user();
-		function get_user(){
+
+		function get_user() {
 			ca.get({
-				url:request_url+'/User/getUserByName',
-				data:{
-					username:login_user
+				url: request_url + '/User/getUserByName',
+				data: {
+					username: login_user
 				},
-				succFn:function(data){
-					if (data){
+				succFn: function(data) {
+					if (data) {
 						var json = JSON.parse(data);
 						my_uname.innerHTML = json.username;
 						if (json.avatar) {
@@ -85,8 +86,8 @@
 						if (json.sex) {
 							my_sex.innerHTML = json.sex;
 						}
-					}else{
-						ca.prompt('系统错误！');
+					} else {
+						ca.prompt('未获取到数据！');
 					}
 				}
 			})

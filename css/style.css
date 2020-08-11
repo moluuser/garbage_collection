@@ -390,6 +390,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	position: relative;
 	top: 0.625rem;
 	text-align: center;
+	z-index: 999999;
 }
 
 .me-qd {

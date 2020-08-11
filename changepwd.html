@@ -58,22 +58,22 @@
 			<h1 class="mui-title">更改密码</h1>
 		</header>
 		<div class="mui-content">
-
-			<form class="mui-input-group" action="javascript:;">
-				<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-info"></span>
-				<div class="mui-input-row">
-					<input type="password" class="mui-input-password" placeholder="原密码">
-				</div>
-				<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
-				<div class="mui-input-row">
-					<input type="password" class="mui-input-password" placeholder="新密码">
-				</div>
-				<br><br>
-				<div class="mui-button-row">
-					<button id="btn_findpwd" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 80%;">确
-						认</button>
-				</div>
-			</form>
+			
+				<form class="mui-input-group" action="javascript:;">
+					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-info"></span>
+					<div class="mui-input-row">
+						<input type="password" class="mui-input-password" placeholder="原密码">
+					</div>
+					<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
+					<div class="mui-input-row">
+						<input type="password" class="mui-input-password" placeholder="新密码">
+					</div>
+					<br><br>
+					<div class="mui-button-row">
+						<button id="btn_findpwd" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 80%;">确
+							认</button>
+					</div>
+				</form>
 
 		</div>
 	</body>
@@ -112,7 +112,7 @@
 							},
 							succFn: function(data) {
 								if (data > 0) {
-									ca.prompt('修改成功！');
+									ca.prompt('修改成功！');									
 								} else {
 									ca.prompt('系统错误！');
 								}

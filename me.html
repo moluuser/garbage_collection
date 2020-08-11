@@ -50,7 +50,7 @@
 				<div class="login-succ me-name" id="to_my" style="display: none;">
 					登陆成功
 				</div>
-				<button class="me-qd">签到领积分</button>
+				<button id="get_score" class="me-qd">签到领积分</button>
 			</div>
 		</div>
 		<div class="login-up"></div>
@@ -138,18 +138,18 @@
 
 		var to_orders = ca.id('to_orders');
 		to_orders.addEventListener('tap', function() {
-			if (login_user){
+			if (login_user) {
 				ca.newInterface({
 					url: 'order.html',
 					id: 'order'
 				});
-			}else {
+			} else {
 				ca.newInterface({
 					url: 'login.html',
 					id: 'login'
 				});
 			}
-			
+
 		});
 
 		var to_setting = ca.id('to_setting');
@@ -191,19 +191,20 @@
 				id: 'my'
 			});
 		});
-		
+
 		var login_succ = ca.className('login-succ');
 		var login_after = ca.className('login-after');
-		
+
 		get_user();
-		function get_user(){
+
+		function get_user() {
 			ca.get({
-				url:request_url+'/User/getUserByName',
-				data:{
-					username:login_user
+				url: request_url + '/User/getUserByName',
+				data: {
+					username: login_user
 				},
-				succFn:function(data){
-					if (data){
+				succFn: function(data) {
+					if (data) {
 						var json = JSON.parse(data);
 						localStorage.setItem('login_id', json.uid);
 						login_after['0'].style.display = "none";
@@ -214,7 +215,7 @@
 						if (json.avatar) {
 							login_succ['0'].src = json.avatar;
 						}
-					}else{
+					} else {
 						login_after['0'].style.display = "block";
 						login_succ['0'].style.display = "none";
 						login_after['1'].style.display = "block";
@@ -223,5 +224,30 @@
 				}
 			})
 		}
+		
+		var get_score = ca.id('get_score');
+		get_score.addEventListener('tap', function() {
+			var login_id = localStorage.getItem('login_id');
+			if (login_user) {
+				ca.get({
+					url: request_url + '/User/updUserScoreById',
+					data: {
+						uid: login_id,
+						changevar: 5
+					},
+					succFn: function(data) {
+						if (data > 0) {
+							ca.prompt('签到成功！获得5积分！');
+						} else if (date == -1) {
+							ca.prompt('您今天已经签过到啦，明天再来吧！');
+						} else {
+							ca.prompt('签到失败！');
+						}
+					}
+				})
+			} else {
+				ca.prompt('您还没有登陆！');
+			}
+		});
 	</script>
 </html>
