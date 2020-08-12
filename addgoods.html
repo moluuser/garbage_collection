@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/goods.data.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">回收物品信息</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>类别规格</label>
+					<input id="myaddress" type="text" readonly="readonly" class="mui-input-clear" placeholder="请点击下方按钮选择">
+				</div>
+				<div id='cityResult' class="ui-alert"></div>
+				<button id='showgoodsPicker' class="mui-btn mui-btn-block" type='button'>选择回收物品类别规格</button>
+				<div id='cityResult3' class="ui-alert"></div>
+				<div class="mui-input-row">
+					<label>预估价格</label>
+					<input type="number" class="mui-input-clear" placeholder="元">
+				</div>
+				<div class="mui-card-footer">
+					<p>您可以添加订单备注或上传图片添加回收物品的详细信息。</p>
+				</div>
+				<div class="mui-button-row">
+					<button id="btn_changetel" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+						认</button>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				/**
+				 * 获取对象属性的值
+				 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+				 * @param {Object} obj 对象
+				 * @param {String} param 属性名
+				 */
+				var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+
+				//-----------------------------------------
+				//					//级联示例
+				var goodsPicker = new $.PopPicker({
+					layer: 3
+				});
+				goodsPicker.setData(goodsData);
+				var showCityPickerButton = doc.getElementById('showgoodsPicker');
+				var cityResult3 = doc.getElementById('cityResult3');
+				var myaddress = ca.id('myaddress');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					goodsPicker.show(function(items) {
+						myaddress.value = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " +
+							_getParam(items[2], 'text');
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+			});
+		})(mui, document);
+	</script>
+</html>

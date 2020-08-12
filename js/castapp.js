@@ -603,7 +603,7 @@ window.dongyi = window.dj = window.castapp = window.ca =  {
 			       	 	return;
 			        }
 			        index--;     
-			        if(arrayData[index].title == '照相机'){
+			        if(arrayData[index].title == '拍照'){
 				        	dongyi.camera({
 				        		succFn:function(path,name){
 					        		if(jsonData && jsonData.isUpload){

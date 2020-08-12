@@ -25,16 +25,16 @@
 			<h1 class="mui-title">闪电下单</h1>
 		</header>
 		<div class="mui-content">
-			<div class="order-panel" style="line-height: 2.5rem;">
+			<div id="to_address" class="order-panel" style="line-height: 2.5rem;">
 				<span style="color: #b2e278;" class="mui-icon mui-icon-location"></span>
 				<p>添加上门地址</p>
 			</div>
-			
-			<div class="order-panel" style="line-height: 4.8rem;">
+
+			<div id="to_addgoods" class="order-panel" style="line-height: 4.8rem;">
 				<p>请添加您需要上门回收的物品吧</p>
 			</div>
-			
-			
+
+
 			<div class="order-panel" style="text-align: left; height: 13.5rem;">
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell">
@@ -55,4 +55,27 @@
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		ca.receiveNotice('update', function() {
+			get_user();
+		});
+
+		var to_address = ca.id('to_address');
+		to_address.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'address.html',
+				id: 'address'
+			});
+		});
+
+
+		var to_addgoods = ca.id('to_addgoods');
+		to_addgoods.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'addgoods.html',
+				id: 'addgoods'
+			});
+		});
+	</script>
 </html>
