@@ -918,36 +918,42 @@ window.dongyi = window.dj = window.castapp = window.ca =  {
 	 * @param {Object} errFn     失败回调
 	 */
 	uploadFiles:function(uploadUrl,filePath,succFn,errFn){
-		var files=[];
-		var n=filePath.substr(filePath.lastIndexOf('/')+1);
-		files.push({name:"uploadkey",path:filePath});       
-		if(files.length<=0){
-		    this.prompt("没有添加上传文件");
-		    return;
-		}
+		// var files=[];
+		// var n=filePath.substr(filePath.lastIndexOf('/')+1);
+		// files.push({name:"uploadkey",path:filePath});       
+		// if(files.length<=0){
+		//     this.prompt("没有添加上传文件");
+		//     return;
+		// }
 		dongyi.showWaiting('上传中...');      
 		var task = gP.uploader.createUpload(uploadUrl,
 		    {method:"POST"},
 	        function(t,status){ 
 	  
 	            if(status==200){
+					// alert('yes');
 	                var responseText = t.responseText;
-	                var json = eval('(' + responseText + ')');
-	                var files = json.files;
-	                var img_url = files.uploadkey.url;   
-	                succFn(img_url);
+	                // var json = eval('(' + responseText + ')');
+	                // var files = json.files;
+	                // var img_url = files.uploadkey.url;   
+					// alert(responseText);
+	                succFn(responseText);
 	                dongyi.closeWaiting();
 	            }else{
+					// alert('no');
 	            	errFn && errFn(status);
 	                dongyi.closeWaiting();
 	            }
 	        });       
-	    task.addData("client","");
-	    task.addData("uid",Math.floor(Math.random()*100000000+10000000).toString());
-	    for(var i=0;i<files.length;i++){
-	        var f=files[i];
-	        task.addFile(f.path,{key:f.name});
-	    }
+	    // task.addData("client","");
+	    // task.addData("uid",Math.floor(Math.random()*100000000+10000000).toString());
+	    // for(var i=0;i<files.length;i++){
+	    //     var f=files[i];
+	    //     task.addFile(f.path,{key:f.name});
+	    // }
+		task.addFile(filePath, {
+			key: "file"
+		});
 	    task.start();
 	},
 	/**
@@ -1673,5 +1679,6 @@ window.dongyi = window.dj = window.castapp = window.ca =  {
 	
 })();
 
-
+var server_host = 'http://39.96.82.182:6100';
 var request_url = 'http://39.96.82.182:6100/api';
+var upload_url = 'http://39.96.82.182:6100/upload';

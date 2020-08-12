@@ -467,7 +467,7 @@ div.mui-input-row.mui-radio.mui-left::after,
 	width: 90%;
 	position: absolute;
 	left: 5%;
-	margin-top: 5%;
+	margin-top: -10%;
 }
 
 .score-data {
