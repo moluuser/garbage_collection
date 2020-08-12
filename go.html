@@ -37,24 +37,29 @@
 
 			<div class="order-panel" style="text-align: left; height: 13.5rem;">
 				<ul class="mui-table-view">
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="to_time">
 						<a class="mui-navigate-right">预约时间</a>
 						<p class="order-tip">请选择预约上门时间</p>
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="to_adddetail">
 						<a class="mui-navigate-right">备注信息</a>
 						<p class="order-tip">可描述物品状态，特殊要求等</p>
 					</li>
-					<li class="mui-table-view-cell">
+					<li class="mui-table-view-cell" id="addimg">
 						<a class="mui-navigate-right">上传照片</a>
 						<p class="order-tip">将需要回收的物品进行拍照</p>
 					</li>
 				</ul>
 			</div>
 			<button class="xrb-btn go-btn">闪电下单</button>
+
+
+
+
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
+
 	<script>
 		ca.init();
 		ca.receiveNotice('update', function() {
@@ -77,5 +82,47 @@
 				id: 'addgoods'
 			});
 		});
+
+		var to_time = ca.id('to_time');
+		to_time.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'addtime.html',
+				id: 'addtime'
+			});
+		});
+
+		var to_adddetail = ca.id('to_adddetail');
+		to_adddetail.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'adddetail.html',
+				id: 'adddetail'
+			});
+		});
+
+
+		var addimg = ca.id('addimg');
+		addimg.addEventListener('tap', function() {
+			var arr = ['拍照', '相册'];
+			ca.actionSheet(arr, {
+				succFn: function(data) {
+					if (data) {
+						// console.log(server_host + data);
+						var myid = localStorage.getItem('login_id');
+						var new_avatar = server_host + data;
+						// ca.prompt('上传成功！');
+						// 成功todo
+
+					} else {
+						ca.prompt('您还没有选择照片！');
+					}
+				},
+				isUpload: true,
+				uploadUrl: upload_url,
+
+			});
+		});
 	</script>
+
+
+
 </html>
