@@ -8,6 +8,11 @@
 		<link href="css/mui.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" href="css/iconfont.css">
+		<style>
+			.mui-card-header:after, .mui-card-footer:before {
+			    display: none;
+			}
+		</style>
 	</head>
 
 	<body>
@@ -56,14 +61,21 @@
 						<p class="order-tip">可描述物品状态，特殊要求等</p>
 						<p class="go-display"></p>
 					</li>
-					<li class="mui-table-view-cell" id="addimg">
-						<a class="mui-navigate-right">上传照片</a>
-						<p class="order-tip">将需要回收的物品进行拍照</p>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" id="addimg">上传照片</a>
+						<p class="order-tip" id="addimg">将需要回收的物品进行拍照</p>
+						<div class="mui-card-header mui-card-media" style="margin-top: 0.3125rem;">
+							<img id="goodsimg" src="img/white.png"/>
+							<div class="mui-media-body">
+								<button id="delimg" style="position: absolute;right: 0.3125rem;" type="button" class="mui-btn mui-btn-danger mui-btn-outlined">删除</button>
+							</div>
+						</div>
 					</li>
+
 				</ul>
 			</div>
-			<button class="xrb-btn go-btn">闪电下单</button>
-			<button id="reset_info" class="xrb-btn go-btn" style="margin-top: 3.75rem;">重 置</button>
+			<button id="lightingorder" class="xrb-btn go-btn" style="margin-top: 1.5625rem;">闪电下单</button>
+			<button id="reset_info" class="xrb-btn go-btn" style="margin-top: 4.375rem">重 置</button>
 
 
 
@@ -99,15 +111,20 @@
 				id: 'addgoods'
 			});
 		});
-		
-		var myaddress_panel = ca.id('myaddress_panel');
-		myaddress_panel.addEventListener('tap', function() {
+
+		var mygoods_panel = ca.id('mygoods_panel');
+		mygoods_panel.addEventListener('tap', function() {
 			ca.newInterface({
 				url: 'addgoods.html',
 				id: 'addgoods'
 			});
 		});
-		
+
+
+		var delimg = ca.id('delimg');
+		delimg.addEventListener('tap', function() {
+			ca.id('goodsimg').src = 'img/white.png';
+		});
 
 		var to_time = ca.id('to_time');
 		to_time.addEventListener('tap', function() {
@@ -125,6 +142,11 @@
 			});
 		});
 
+		var lightingorder = ca.id('lightingorder');
+		lightingorder.addEventListener('tap', function() {
+			// 闪电下单
+		});
+
 
 		var addimg = ca.id('addimg');
 		addimg.addEventListener('tap', function() {
@@ -137,6 +159,9 @@
 						var new_avatar = server_host + data;
 						// ca.prompt('上传成功！');
 						// 成功todo
+						var goodimg = server_host + data;
+						ca.id('goodsimg').src = goodimg;
+						// 上传到服务器
 
 					} else {
 						ca.prompt('您还没有选择照片！');
@@ -153,8 +178,17 @@
 
 		function get_info() {
 			var go_display = ca.className('go-display');
-			go_display['0'].innerHTML = localStorage.getItem('hometype') + ' | ' + localStorage.getItem('hometime');
-			go_display['1'].innerHTML = localStorage.getItem('detail');
+			if (localStorage.getItem('hometype') != null) {
+				go_display['0'].innerHTML = localStorage.getItem('hometype') + ' | ' + localStorage.getItem('hometime');
+			} else {
+				go_display['0'].innerHTML = '';
+			}
+
+			if (localStorage.getItem('detail') != null) {
+				go_display['1'].innerHTML = localStorage.getItem('detail');
+			} else {
+				go_display['1'].innerHTML = '';
+			}
 
 			if (localStorage.getItem('contactname') != null) {
 				var myaddress_panel = ca.id('myaddress_panel');
@@ -172,34 +206,40 @@
 				var to_address = ca.id('to_address');
 				to_address.style.display = 'block';
 			}
-			
+
 			if (localStorage.getItem('goodstype') != null) {
-				alert(localStorage.getItem('goodstype'));
 				var mygoods_panel = ca.id('mygoods_panel');
 				mygoods_panel.style.display = 'block';
 				var to_addgoods = ca.id('to_addgoods');
 				to_addgoods.style.display = 'none';
 				var mygoods = ca.className('mygoods');
-				mygoods['0'].innerHTML = '联系人：' + localStorage.getItem('goodstype');
-				mygoods['1'].innerHTML = '手机号码：' + localStorage.getItem('goodsname');
-				mygoods['2'].innerHTML = '上门地址：' + localStorage.getItem('goodsnum');
-				mygoods['3'].innerHTML = '详细地址：' + localStorage.getItem('price');
+				mygoods['0'].innerHTML = '类别规格：' + localStorage.getItem('goodstype');
+				mygoods['1'].innerHTML = '名称：' + localStorage.getItem('goodsname');
+				mygoods['2'].innerHTML = '数量：' + localStorage.getItem('goodsnum');
+				mygoods['3'].innerHTML = '预估价格：' + localStorage.getItem('price');
 			} else {
 				var mygoods_panel = ca.id('mygoods_panel');
 				mygoods_panel.style.display = 'none';
 				var to_addgoods = ca.id('to_addgoods');
 				to_addgoods.style.display = 'block';
 			}
-
-
-
-
 		}
 
+		var reset_info = ca.id('reset_info');
+		reset_info.addEventListener('tap', function() {
+			localStorage.removeItem('hometype');
+			localStorage.removeItem('hometime');
+			localStorage.removeItem('detail');
+			localStorage.removeItem('contactname');
+			localStorage.removeItem('contacttel');
+			localStorage.removeItem('homeaddress');
+			localStorage.removeItem('detailaddress');
+			localStorage.removeItem('goodstype');
+			localStorage.removeItem('goodsname');
+			localStorage.removeItem('goodsnum');
+			localStorage.removeItem('price');
 
-		var reset_info = ca.id(' reset_info');
-		to_adddetail.addEventListener('tap', function() {
-
+			get_info();
 		});
 
 		ca.receiveNotice('update', function() {

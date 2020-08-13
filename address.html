@@ -91,7 +91,7 @@
 			});
 		})(mui, document);
 
-		if (localStorage.getItem('contactname') != '') {
+		if (localStorage.getItem('contactname') != null) {
 			var address = ca.className('address');
 			address['0'].value = localStorage.getItem('contactname');
 			address['1'].value = localStorage.getItem('contacttel');

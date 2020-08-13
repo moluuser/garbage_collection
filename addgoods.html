@@ -33,26 +33,26 @@
 			<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>类别规格</label>
-					<input id="myaddress" type="text" readonly="readonly" class="mui-input-clear" placeholder="点击下方按钮选择">
+					<input id="mygoods" type="text" readonly="readonly" class="mui-input-clear addgoodinput" placeholder="点击下方按钮选择">
 				</div>
-				<button id='showgoodsPicker' class="mui-btn mui-btn-block" type='button'>选择回收物品类别规格</button>
+				<button id="showgoodsPicker" class="mui-btn mui-btn-block" type="button">选择回收物品类别规格</button>
 				<div class="mui-input-row">
 					<label>名称</label>
-					<input type="text" class="mui-input-clear" placeholder="回收物品的名称">
+					<input type="text" class="mui-input-clear addgoodinput" placeholder="回收物品的名称">
 				</div>
 				<div class="mui-input-row">
 					<label>数量</label>
-					<input type="number" class="mui-input-clear" placeholder="件">
+					<input type="number" class="mui-input-clear addgoodinput" placeholder="件">
 				</div>
 				<div class="mui-input-row">
 					<label>预估价格</label>
-					<input type="number" class="mui-input-clear" placeholder="元">
+					<input type="number" class="mui-input-clear addgoodinput" placeholder="元">
 				</div>
 				<div class="mui-card-footer">
 					<p>您可以通过订单备注或上传图片来描述回收物品的更多详细信息。</p>
 				</div>
 				<div class="mui-button-row">
-					<button id="btn_changetel" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+					<button id="btn_addgoods" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
 						认</button>
 				</div>
 			</form>
@@ -60,6 +60,7 @@
 	</body>
 	<script src="js/castapp.js"></script>
 	<script>
+		ca.init();
 		(function($, doc) {
 			$.init();
 			$.ready(function() {
@@ -81,10 +82,10 @@
 				goodsPicker.setData(goodsData);
 				var showCityPickerButton = doc.getElementById('showgoodsPicker');
 				var cityResult3 = doc.getElementById('cityResult3');
-				var myaddress = ca.id('myaddress');
+				var mygoods = ca.id('mygoods');
 				showCityPickerButton.addEventListener('tap', function(event) {
 					goodsPicker.show(function(items) {
-						myaddress.value = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " +
+						mygoods.value = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " +
 							_getParam(items[2], 'text');
 						//返回 false 可以阻止选择框的关闭
 						//return false;
@@ -92,7 +93,33 @@
 				}, false);
 			});
 		})(mui, document);
-		
-		
+
+
+		if (localStorage.getItem('goodstype') != null) {
+			var addgoodinput = ca.className('addgoodinput');
+			addgoodinput['0'].value = localStorage.getItem('goodstype');
+			addgoodinput['1'].value = localStorage.getItem('goodsname');
+			addgoodinput['2'].value = localStorage.getItem('goodsnum');
+			addgoodinput['3'].value = localStorage.getItem('price');
+		}
+
+		var btn_addgoods = ca.id('btn_addgoods');
+		btn_addgoods.addEventListener('tap', function() {
+			var addgoodinput = ca.className('addgoodinput');
+
+			if (addgoodinput['0'].value != '' && addgoodinput['1'].value && addgoodinput['2'].value && addgoodinput['3'].value != '') {
+				localStorage.setItem('goodstype', addgoodinput['0'].value);
+				localStorage.setItem('goodsname', addgoodinput['1'].value);
+				localStorage.setItem('goodsnum', addgoodinput['2'].value);
+				localStorage.setItem('price', addgoodinput['3'].value);
+				
+				var arr = ['go'];
+				ca.sendNotice(arr, 'update', {});
+				ca.closeCurrentInterface();
+			} else {
+				ca.prompt('填写信息不完整！');
+				return;
+			}
+		});
 	</script>
 </html>
