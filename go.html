@@ -155,6 +155,12 @@
 				imgurl = '';
 			else
 				imgurl = ca.id('goodsimg').src;
+				
+			var orderd = '';
+			if(localStorage.getItem('detail') == null)
+				orderd = '';
+			else
+				orderd = localStorage.getItem('detail');
 
 			// 闪电下单
 			ca.get({
@@ -171,7 +177,7 @@
 					price: localStorage.getItem('price'),
 					hometype: localStorage.getItem('hometype'),
 					hometime: localStorage.getItem('hometime'),
-					detail: localStorage.getItem('detail'),
+					detail: orderd,
 					photo: imgurl
 				},
 				succFn: function(data) {
