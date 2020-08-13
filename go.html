@@ -34,7 +34,7 @@
 				<span style="color: #b2e278;" class="mui-icon mui-icon-location"></span>
 				<p>添加上门地址</p>
 			</div>
-			<div id="myaddress_panel" class="mui-card" style="box-shadow: 0.05rem 0.05rem 0.05rem white;border-radius: 0.625rem; ">
+			<div id="myaddress_panel" class="mui-card">
 				<div class="mui-card-footer myaddress"></div>
 				<div class="mui-card-footer myaddress"></div>
 				<div class="mui-card-footer myaddress"></div>
@@ -43,7 +43,7 @@
 			<div id="to_addgoods" class="order-panel" style="line-height: 4.8rem;">
 				<p>请添加您需要上门回收的物品吧</p>
 			</div>
-			<div id="mygoods_panel" class="mui-card" style="box-shadow: 0.05rem 0.05rem 0.05rem white;border-radius: 0.625rem; ">
+			<div id="mygoods_panel" class="mui-card">
 				<div class="mui-card-footer mygoods"></div>
 				<div class="mui-card-footer mygoods"></div>
 				<div class="mui-card-footer mygoods"></div>
@@ -150,6 +150,11 @@
 				return;
 			}
 
+			var imgurl = '';
+			if (ca.id('goodsimg').src.substr(0, 4) == 'file')
+				imgurl = '';
+			else
+				imgurl = ca.id('goodsimg').src;
 
 			// 闪电下单
 			ca.get({
@@ -167,7 +172,7 @@
 					hometype: localStorage.getItem('hometype'),
 					hometime: localStorage.getItem('hometime'),
 					detail: localStorage.getItem('detail'),
-					photo: ca.id('goodsimg').src
+					photo: imgurl
 				},
 				succFn: function(data) {
 					if (data > 0) {
@@ -288,6 +293,7 @@
 			localStorage.removeItem('price');
 			ca.id('goodsimg').src = 'img/white.png';
 			get_info();
+			ca.prompt('重置成功！');
 		});
 
 		ca.receiveNotice('update', function() {
