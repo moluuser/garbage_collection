@@ -65,7 +65,7 @@
 						<a class="mui-navigate-right" id="addimg">上传照片</a>
 						<p class="order-tip" id="addimg">将需要回收的物品进行拍照</p>
 						<div class="mui-card-header mui-card-media" style="margin-top: 0.3125rem;">
-							<img id="goodsimg" src="img/white.png"/>
+							<img id="goodsimg" src="img/white.png" />
 							<div class="mui-media-body">
 								<button id="delimg" style="position: absolute;right: 0.3125rem;" type="button" class="mui-btn mui-btn-danger mui-btn-outlined">删除</button>
 							</div>
@@ -144,8 +144,57 @@
 
 		var lightingorder = ca.id('lightingorder');
 		lightingorder.addEventListener('tap', function() {
+			if (localStorage.getItem('goodstype') == null || localStorage.getItem('contactname') == null || localStorage.getItem(
+					'hometype') == null || localStorage.getItem('hometime') == null) {
+				ca.prompt('请完整填写上门地址，回收物品及预约时间！');
+				return;
+			}
+
+
 			// 闪电下单
+			ca.get({
+				url: request_url + '/Order/addOrder',
+				data: {
+					uid: localStorage.getItem('login_id'),
+					contactname: localStorage.getItem('contactname'),
+					contacttel: localStorage.getItem('contacttel'),
+					homeaddress: localStorage.getItem('homeaddress'),
+					detailaddress: localStorage.getItem('detailaddress'),
+					goodstype: localStorage.getItem('goodstype'),
+					goodsname: localStorage.getItem('goodsname'),
+					goodsnum: localStorage.getItem('goodsnum'),
+					price: localStorage.getItem('price'),
+					hometype: localStorage.getItem('hometype'),
+					hometime: localStorage.getItem('hometime'),
+					detail: localStorage.getItem('detail'),
+					photo: ca.id('goodsimg').src
+				},
+				succFn: function(data) {
+					if (data > 0) {
+						ca.prompt('订单提交成功！');
+						localStorage.removeItem('hometype');
+						localStorage.removeItem('hometime');
+						localStorage.removeItem('detail');
+						localStorage.removeItem('contactname');
+						localStorage.removeItem('contacttel');
+						localStorage.removeItem('homeaddress');
+						localStorage.removeItem('detailaddress');
+						localStorage.removeItem('goodstype');
+						localStorage.removeItem('goodsname');
+						localStorage.removeItem('goodsnum');
+						localStorage.removeItem('price');
+						ca.id('goodsimg').src = 'img/white.png';
+
+						ca.closeCurrentInterface();
+
+					} else {
+						ca.prompt('订单提交失败！');
+					}
+
+				}
+			})
 		});
+
 
 
 		var addimg = ca.id('addimg');
@@ -161,7 +210,6 @@
 						// 成功todo
 						var goodimg = server_host + data;
 						ca.id('goodsimg').src = goodimg;
-						// 上传到服务器
 
 					} else {
 						ca.prompt('您还没有选择照片！');
@@ -238,7 +286,7 @@
 			localStorage.removeItem('goodsname');
 			localStorage.removeItem('goodsnum');
 			localStorage.removeItem('price');
-
+			ca.id('goodsimg').src = 'img/white.png';
 			get_info();
 		});
 
