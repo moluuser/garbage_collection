@@ -29,21 +29,32 @@
 				<span style="color: #b2e278;" class="mui-icon mui-icon-location"></span>
 				<p>添加上门地址</p>
 			</div>
-
+			<div id="myaddress_panel" class="mui-card" style="box-shadow: 0.05rem 0.05rem 0.05rem white;border-radius: 0.625rem; ">
+				<div class="mui-card-footer myaddress"></div>
+				<div class="mui-card-footer myaddress"></div>
+				<div class="mui-card-footer myaddress"></div>
+				<div class="mui-card-footer myaddress"></div>
+			</div>
 			<div id="to_addgoods" class="order-panel" style="line-height: 4.8rem;">
 				<p>请添加您需要上门回收的物品吧</p>
 			</div>
-
-
+			<div id="mygoods_panel" class="mui-card" style="box-shadow: 0.05rem 0.05rem 0.05rem white;border-radius: 0.625rem; ">
+				<div class="mui-card-footer mygoods"></div>
+				<div class="mui-card-footer mygoods"></div>
+				<div class="mui-card-footer mygoods"></div>
+				<div class="mui-card-footer mygoods"></div>
+			</div>
 			<div class="order-panel" style="text-align: left; height: 13.5rem;">
 				<ul class="mui-table-view">
 					<li class="mui-table-view-cell" id="to_time">
 						<a class="mui-navigate-right">预约时间</a>
 						<p class="order-tip">请选择预约上门时间</p>
+						<p class="go-display"></p>
 					</li>
 					<li class="mui-table-view-cell" id="to_adddetail">
 						<a class="mui-navigate-right">备注信息</a>
 						<p class="order-tip">可描述物品状态，特殊要求等</p>
+						<p class="go-display"></p>
 					</li>
 					<li class="mui-table-view-cell" id="addimg">
 						<a class="mui-navigate-right">上传照片</a>
@@ -52,6 +63,7 @@
 				</ul>
 			</div>
 			<button class="xrb-btn go-btn">闪电下单</button>
+			<button id="reset_info" class="xrb-btn go-btn" style="margin-top: 3.75rem;">重 置</button>
 
 
 
@@ -62,9 +74,6 @@
 
 	<script>
 		ca.init();
-		ca.receiveNotice('update', function() {
-			get_user();
-		});
 
 		var to_address = ca.id('to_address');
 		to_address.addEventListener('tap', function() {
@@ -75,6 +84,14 @@
 		});
 
 
+		var myaddress_panel = ca.id('myaddress_panel');
+		myaddress_panel.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'address.html',
+				id: 'address'
+			});
+		});
+
 		var to_addgoods = ca.id('to_addgoods');
 		to_addgoods.addEventListener('tap', function() {
 			ca.newInterface({
@@ -82,6 +99,15 @@
 				id: 'addgoods'
 			});
 		});
+		
+		var myaddress_panel = ca.id('myaddress_panel');
+		myaddress_panel.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'addgoods.html',
+				id: 'addgoods'
+			});
+		});
+		
 
 		var to_time = ca.id('to_time');
 		to_time.addEventListener('tap', function() {
@@ -120,6 +146,64 @@
 				uploadUrl: upload_url,
 
 			});
+		});
+
+
+		get_info();
+
+		function get_info() {
+			var go_display = ca.className('go-display');
+			go_display['0'].innerHTML = localStorage.getItem('hometype') + ' | ' + localStorage.getItem('hometime');
+			go_display['1'].innerHTML = localStorage.getItem('detail');
+
+			if (localStorage.getItem('contactname') != null) {
+				var myaddress_panel = ca.id('myaddress_panel');
+				myaddress_panel.style.display = 'block';
+				var to_address = ca.id('to_address');
+				to_address.style.display = 'none';
+				var myaddress = ca.className('myaddress');
+				myaddress['0'].innerHTML = '联系人：' + localStorage.getItem('contactname');
+				myaddress['1'].innerHTML = '手机号码：' + localStorage.getItem('contacttel');
+				myaddress['2'].innerHTML = '上门地址：' + localStorage.getItem('homeaddress');
+				myaddress['3'].innerHTML = '详细地址：' + localStorage.getItem('detailaddress');
+			} else {
+				var myaddress_panel = ca.id('myaddress_panel');
+				myaddress_panel.style.display = 'none';
+				var to_address = ca.id('to_address');
+				to_address.style.display = 'block';
+			}
+			
+			if (localStorage.getItem('goodstype') != null) {
+				alert(localStorage.getItem('goodstype'));
+				var mygoods_panel = ca.id('mygoods_panel');
+				mygoods_panel.style.display = 'block';
+				var to_addgoods = ca.id('to_addgoods');
+				to_addgoods.style.display = 'none';
+				var mygoods = ca.className('mygoods');
+				mygoods['0'].innerHTML = '联系人：' + localStorage.getItem('goodstype');
+				mygoods['1'].innerHTML = '手机号码：' + localStorage.getItem('goodsname');
+				mygoods['2'].innerHTML = '上门地址：' + localStorage.getItem('goodsnum');
+				mygoods['3'].innerHTML = '详细地址：' + localStorage.getItem('price');
+			} else {
+				var mygoods_panel = ca.id('mygoods_panel');
+				mygoods_panel.style.display = 'none';
+				var to_addgoods = ca.id('to_addgoods');
+				to_addgoods.style.display = 'block';
+			}
+
+
+
+
+		}
+
+
+		var reset_info = ca.id(' reset_info');
+		to_adddetail.addEventListener('tap', function() {
+
+		});
+
+		ca.receiveNotice('update', function() {
+			get_info();
 		});
 	</script>
 

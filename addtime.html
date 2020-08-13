@@ -30,7 +30,7 @@
 			<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>预约时间</label>
-					<select class="mui-btn mui-btn-block" style="position: absolute; width: 12.5rem; left: 50%;">
+					<select id="addtime_select" class="mui-btn mui-btn-block" style="position: absolute; width: 12.5rem; left: 50%;">
 						<option value="随时可以">随时可以 ></option>
 						<option value="选择时间">选择时间 ></option>
 					</select>
@@ -47,7 +47,7 @@
 					<p>当您选择随时可以上门回收时，上门时间可以为空。</p>
 				</div>
 				<div class="mui-button-row">
-					<button id="btn_changetel" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+					<button id="btn_addtime" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
 						认</button>
 				</div>
 			</form>
@@ -55,6 +55,9 @@
 	</body>
 	<script src="js/castapp.js"></script>
 	<script>
+		ca.init();
+
+
 		(function($) {
 			$.init();
 			var result = $('#mytime')[0];
@@ -88,7 +91,13 @@
 							 * rs.h 时，用法同年
 							 * rs.i 分（minutes 的第二个字母），用法同年
 							 */
-							result.value = rs.text;
+							var addtime_select = ca.id('addtime_select').value;
+							if (addtime_select != '随时可以') {
+								result.value = rs.text;
+							} else {
+								ca.prompt('预约时间为“随时可以”时，不需要填写上门时间！')
+							}
+
 							/* 
 							 * 返回 false 可以阻止选择框的关闭
 							 * return false;
@@ -107,5 +116,32 @@
 				}, false);
 			});
 		})(mui);
+
+
+		var btn_addtime = ca.id('btn_addtime');
+		btn_addtime.addEventListener('tap', function() {
+			var addtime_select = ca.id('addtime_select').value;
+			var mytime = ca.id('mytime').value;
+			// alert(addtime_select);
+			if (addtime_select != '随时可以' && mytime == '') {
+				// alert('66');
+				ca.prompt('请选择上门时间！');
+				return;
+			}
+			localStorage.setItem('hometype', addtime_select);
+			localStorage.setItem('hometime', mytime);
+
+			var arr = ['go'];
+			ca.sendNotice(arr, 'update', {});
+
+			ca.closeCurrentInterface();
+		});
+
+		if (localStorage.getItem('hometype') != '') {
+			ca.id('addtime_select').value = localStorage.getItem('hometype');
+		}
+		if (localStorage.getItem('hometime') != '') {
+			ca.id('mytime').value = localStorage.getItem('hometime');
+		}
 	</script>
 </html>

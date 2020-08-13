@@ -32,13 +32,31 @@
 		<div class="mui-content" style="margin: 0.9375rem; text-align:center;">
 			<div class="feed-panel">
 				<form class="mui-input-group">
-					<textarea id="feed-msg" placeholder="请填写订单的备注信息..." rows="5"></textarea>
+					<textarea id="detail_text" placeholder="请填写订单的备注信息..." rows="5"></textarea>
 				</form>
 			</div>
 			<br>
-			<button id="btn_changetel" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+			<button id="btn_detail" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
 				认</button>
 		</div>
 	</body>
 	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		if (localStorage.getItem('detail') != '') {
+			ca.id('detail_text').value = localStorage.getItem('detail');
+		}
+		
+		var btn_detail = ca.id('btn_detail');
+		btn_detail.addEventListener('tap', function() {
+			var detail_text = ca.id('detail_text').value;
+
+			localStorage.setItem('detail', detail_text);
+
+			var arr = ['go'];
+			ca.sendNotice(arr, 'update', {});
+
+			ca.closeCurrentInterface();
+		});
+	</script>
 </html>

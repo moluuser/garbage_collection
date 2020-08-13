@@ -538,3 +538,8 @@ div.mui-input-row.mui-radio.mui-left::after,
 .feed-panel {
 	border: 1px solid #b4d145;
 }
+
+.go-display {
+	margin-top: 0.625rem;
+	word-break:break-word;
+}
