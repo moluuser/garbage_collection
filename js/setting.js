@@ -49,6 +49,7 @@ loginout.addEventListener('tap', function() {
 		localStorage.removeItem('goodsnum');
 		localStorage.removeItem('price');
 		localStorage.removeItem('oid');
+		localStorage.removeItem('aid');
 		var arr = ['me.html'];
 		ca.sendNotice(arr, 'update', {});
 

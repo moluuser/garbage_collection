@@ -27,7 +27,7 @@
 		</script>
 		<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">新增地址</h1>
+			<h1 class="mui-title">修改地址</h1>
 		</header>
 		<div class="mui-content">
 			<form class="mui-input-group">
@@ -92,6 +92,31 @@
 		})(mui, document);
 
 		var btn_address = ca.id('btn_address');
+
+		if (localStorage.getItem('aid') != null || localStorage.getItem('aid') != '') {
+			ca.get({
+				url: request_url + '/Myaddress/getMyaddressById',
+				data: {
+					aid: localStorage.getItem('aid')
+				},
+				succFn: function(data) {
+					// alert(data);
+					if (data) {
+						var json = JSON.parse(data);
+						var address = ca.className('address');
+						address['0'].value = json.contactname;
+						address['1'].value = json.contacttel;
+						address['2'].value = json.homeaddress;
+						address['3'].value = json.detailaddress;
+					} else {
+						ca.prompt('系统错误！');
+					}
+
+				}
+			})
+		}
+
+
 		btn_address.addEventListener('tap', function() {
 			var login_user = localStorage.getItem('login_user');
 			if (login_user == null || login_user == '') {
@@ -109,9 +134,9 @@
 					return;
 				}
 				ca.get({
-					url: request_url + '/Myaddress/addMyaddress',
+					url: request_url + '/Myaddress/updMyaddressById',
 					data: {
-						uid: localStorage.getItem('login_id'),
+						aid: localStorage.getItem('aid'),
 						contactname: address['0'].value,
 						contacttel: address['1'].value,
 						homeaddress: address['2'].value,
@@ -121,6 +146,7 @@
 						// alert(data);
 						if (data > 0) {
 							ca.prompt('保存成功！');
+							localStorage.removeItem('aid');
 							var arr = ['myaddress'];
 							ca.sendNotice(arr, 'update', {});
 							ca.closeCurrentInterface();

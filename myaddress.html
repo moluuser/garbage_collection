@@ -131,7 +131,11 @@
 			for (var i = 0; i < editthisaddress.length; ++i) {
 				editthisaddress[i].addEventListener('tap', function() {
 					var myaid = this.getAttribute('aid');
-
+					localStorage.setItem('aid', myaid);
+					ca.newInterface({
+						url: 'editmyaddress.html',
+						id: 'editmyaddress'
+					});
 				});
 			}
 		}
