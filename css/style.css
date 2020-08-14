@@ -483,3 +483,24 @@ div.mui-input-row.mui-radio.mui-left::after,
 	box-shadow: 0.05rem 0.05rem 0.05rem white;
 	border-radius: 0.625rem;
 }
+
+.ye-div-b-div-o {
+	overflow: hidden;
+}
+
+.div-o-l {
+	font-size: 14px;
+	float: left;
+}
+
+.div-o-r {
+	font-size: 12px;
+	float: right;
+	color: #333 !important;
+}
+
+.div-b-l {
+	font-size: 12px;
+}
+
+.div-b-r {}

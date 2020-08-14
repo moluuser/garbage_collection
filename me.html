@@ -173,10 +173,18 @@
 
 		var to_score = ca.id('to_score');
 		to_score.addEventListener('tap', function() {
-			ca.newInterface({
-				url: 'score.html',
-				id: 'score'
-			});
+			var login_user = localStorage.getItem('login_user');
+			if (login_user) {
+				ca.newInterface({
+					url: 'score.html',
+					id: 'score'
+				});
+			} else {
+				ca.newInterface({
+					url: 'login.html',
+					id: 'login'
+				});
+			}
 		});
 
 		var to_go = ca.id('to_go');
@@ -241,6 +249,18 @@
 					},
 					succFn: function(data) {
 						if (data > 0) {
+							// 写入积分日志
+							ca.get({
+								url: request_url + '/Scorelog/addScorelog',
+								data: {
+									uid: login_id,
+									delta: 5,
+									detail: '每日签到'
+								},
+								succFn: function(data) {
+
+								}
+							})
 							ca.prompt('签到成功！获得5积分！');
 						} else if (data == -1) {
 							ca.prompt('您今天已经签过到啦，明天再来吧！');
