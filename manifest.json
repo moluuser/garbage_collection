@@ -71,6 +71,10 @@
                 "js/register.js" : {},
                 "js/score.js" : {},
                 "js/setting.js" : {},
+                "js/editaddress.js" : {},
+                "js/editmyaddress.js" : {},
+                "js/haveaddress.js" : {},
+                "js/myaddress.js" : {},
                 "js/xlb.js" : {}
             }
         },

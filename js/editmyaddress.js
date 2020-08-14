@@ -32,16 +32,42 @@ ca.init();
 	});
 })(mui, document);
 
-if (localStorage.getItem('contactname') != null) {
-	var address = ca.className('address');
-	address['0'].value = localStorage.getItem('contactname');
-	address['1'].value = localStorage.getItem('contacttel');
-	address['2'].value = localStorage.getItem('homeaddress');
-	address['3'].value = localStorage.getItem('detailaddress');
+var btn_address = ca.id('btn_address');
+
+if (localStorage.getItem('aid') != null || localStorage.getItem('aid') != '') {
+	// alert();
+	ca.get({
+		url: request_url + '/Myaddress/getMyaddressById',
+		data: {
+			aid: localStorage.getItem('aid')
+		},
+		succFn: function(data) {
+			// alert(data);
+			if (data) {
+				var json = JSON.parse(data);
+				var address = ca.className('address');
+				address['0'].value = json.contactname;
+				address['1'].value = json.contacttel;
+				address['2'].value = json.homeaddress;
+				address['3'].value = json.detailaddress;
+			} else {
+				ca.prompt('系统错误！');
+			}
+
+		}
+	})
 }
 
-var btn_address = ca.id('btn_address');
+
 btn_address.addEventListener('tap', function() {
+	var login_user = localStorage.getItem('login_user');
+	if (login_user == null || login_user == '') {
+		ca.newInterface({
+			url: 'login.html',
+			id: 'login'
+		});
+		return;
+	}
 	var address = ca.className('address');
 
 	if (address['0'].value != '' && address['1'].value && address['2'].value && address['3'].value != '') {
@@ -49,34 +75,31 @@ btn_address.addEventListener('tap', function() {
 			ca.prompt('手机号码格式错误！');
 			return;
 		}
-		localStorage.setItem('contactname', address['0'].value);
-		localStorage.setItem('contacttel', address['1'].value);
-		localStorage.setItem('homeaddress', address['2'].value);
-		localStorage.setItem('detailaddress', address['3'].value);
-		var arr = ['go'];
-		ca.sendNotice(arr, 'update', {});
-		ca.closeCurrentInterface();
+		ca.get({
+			url: request_url + '/Myaddress/updMyaddressById',
+			data: {
+				aid: localStorage.getItem('aid'),
+				contactname: address['0'].value,
+				contacttel: address['1'].value,
+				homeaddress: address['2'].value,
+				detailaddress: address['3'].value
+			},
+			succFn: function(data) {
+				// alert(data);
+				if (data > 0) {
+					ca.prompt('保存成功！');
+					localStorage.removeItem('aid');
+					var arr = ['myaddress'];
+					ca.sendNotice(arr, 'update', {});
+					ca.closeCurrentInterface();
+				} else {
+					ca.prompt('保存失败！');
+				}
+
+			}
+		})
 	} else {
 		ca.prompt('填写信息不完整！');
 		return;
-	}
-});
-
-
-var btn_myaddress = ca.id('btn_myaddress');
-btn_myaddress.addEventListener('tap', function() {
-	ca.newInterface({
-		url: 'haveaddress.html',
-		id: 'haveaddress'
-	});
-});
-
-ca.receiveNotice('update', function() {
-	if (localStorage.getItem('contactname') != null) {
-		var address = ca.className('address');
-		address['0'].value = localStorage.getItem('contactname');
-		address['1'].value = localStorage.getItem('contacttel');
-		address['2'].value = localStorage.getItem('homeaddress');
-		address['3'].value = localStorage.getItem('detailaddress');
 	}
 });
