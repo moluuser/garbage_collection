@@ -505,3 +505,12 @@ div.mui-input-row.mui-radio.mui-left::after,
 }
 
 .div-b-r {}
+
+.address-btn {
+	width: 90%;
+	height: 2.5rem;
+	background-color: #b4d145;
+	color: white;
+	left: 5%;
+	top: 1.25rem;
+}

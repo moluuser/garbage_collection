@@ -43,6 +43,14 @@ to_setting.addEventListener('tap', function() {
 	});
 });
 
+var to_myaddress = ca.id('to_myaddress');
+to_myaddress.addEventListener('tap', function() {
+	ca.newInterface({
+		url: 'myaddress.html',
+		id: 'myaddress'
+	});
+});
+
 var to_login = ca.id('to_login');
 to_login.addEventListener('tap', function() {
 	ca.newInterface({
@@ -150,6 +158,9 @@ get_score.addEventListener('tap', function() {
 			}
 		})
 	} else {
-		ca.prompt('您还没有登陆！');
+		ca.newInterface({
+			url: 'login.html',
+			id: 'login'
+		});
 	}
 });
