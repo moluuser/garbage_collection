@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">回收指南</h1>
+		</header>
+		<img id="to_order" class="float-button" src="img/lightorder.png">
+		<div class="mui-content">
+			<div><a href="#"><img style="max-width: 100%; max-height: 100%;" src="img/guide.png" /></a></div>
+			<div class="guide-text">
+				<p id="guidetext" style="word-break:break-word; font-size: 1.4rem; color: #2d2d2d; line-height: 1.875rem;">
+
+				</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script type="text/javascript" src="js/xlb.js"></script>
+	<script>
+		// 显示回收指南
+		get_msg();
+
+		function get_msg() {
+			ca.get({
+				url: request_url + '/App/getAppInfo',
+				data: {
+
+				},
+				succFn: function(data) {
+					if (data) {
+						var json = JSON.parse(data);
+						var guide_msg = json['guide_msg'];
+						var guide_box = ca.id('guidetext');
+						guide_box.innerHTML = guide_msg;
+
+					} else {
+						ca.prompt('回收指南获取失败！');
+					}
+				}
+			})
+		}
+	</script>
+</html>

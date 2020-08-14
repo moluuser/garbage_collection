@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<style>
+			.mui-card-header:after, .mui-card-footer:before {
+			    display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">积分查询</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-card">
+				<div class="mui-card-header">我的积分</div>
+				<div class="mui-card-content" style="height: 3.125rem;">
+					<p id="my_score" class="score-data">未登录</p>
+				</div>
+				<div class="mui-card-footer">
+					<!-- <button class="xrb-btn score-btn" type="button" class="mui-btn">我要签到</button> -->
+					<p>提示：您可以每天在App内签到获得积分。</p>
+				</div>
+			</div>
+
+			<div class="mui-card">
+				<div class="mui-card-header">积分明细</div>
+				<hr align=center width=95% color=#e6e6e6 size=1>
+				<div class="mui-card-footer" id="nodetail">
+					<p align="center" style="width: 50%; position: absolute; left: 25%;">暂无积分明细</p>
+				</div>
+				<div class="mui-card-content" id="logpanel">
+				</div>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var login_user = localStorage.getItem('login_user')
+		var my_score = ca.id('my_score');
+
+
+		get_user();
+
+		function get_user() {
+			ca.get({
+				url: request_url + '/User/getUserByName',
+				data: {
+					username: login_user
+				},
+				succFn: function(data) {
+					if (data) {
+						var json = JSON.parse(data);
+						my_score.innerHTML = json.score;
+					} else {
+						ca.prompt('获取用户失败！');
+					}
+				}
+			})
+		}
+
+		get_scorelog();
+
+		function get_scorelog() {
+			ca.get({
+				url: request_url + '/Scorelog/getScorelogByUid',
+				data: {
+					uid: localStorage.getItem('login_id')
+				},
+				succFn: function(data) {
+					if (data != '[]') {
+						// alert(data);
+						ca.id('nodetail').style.display = 'none';
+						var json = JSON.parse(data);
+						// alert(data);
+						for (var a in json) {
+							var scoredelta = '';
+							if (json[a].delta > 0) {
+								scoredelta = '<span style="color: red">+' + json[a].delta + '</span>';
+							} else {
+								scoredelta = '<span style="color: green">-' + json[a].delta + '</span>';
+							}
+							var tmpl =
+								`<div style="padding: 6px 15px;">
+								<div class="ye-div-b-div-o">
+									<span class="div-o-l">` +
+								json[a].detail +
+								`</span>
+									<span class="div-o-r"></span>
+								</div>
+								<div class="ye-div-m-div-t">
+									<span class="div-o-l div-b-l">` +
+								json[a].createtime + `</span>
+									<span class="div-o-r div-b-r">` + scoredelta +
+								`</span>
+								</div>
+							</div>
+							<hr align=center width=95% color=#e6e6e6 size=1>
+								`;
+
+							ca.id('logpanel').innerHTML += tmpl;
+						}
+					} else {
+						ca.id('nodetail').style.display = 'block';
+					}
+				}
+			})
+		}
+	</script>
+</html>

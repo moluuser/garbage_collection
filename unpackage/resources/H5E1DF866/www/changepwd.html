@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			$(function() {
+				var flag = true;
+				$("input:radio").click(function() {
+					$(this).prop("checked", flag);
+					flag = !flag;
+				})
+			});
+		</script>
+		<style>
+			select,
+			textarea,
+			input[type='text'],
+			input[type='search'],
+			input[type='password'],
+			input[type='datetime'],
+			input[type='datetime-local'],
+			input[type='date'],
+			input[type='month'],
+			input[type='time'],
+			input[type='week'],
+			input[type='number'],
+			input[type='email'],
+			input[type='url'],
+			input[type='tel'],
+			input[type='color'] {
+				width: 80%;
+				position: relative;
+				left: 15%;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">更改密码</h1>
+		</header>
+		<div class="mui-content">
+
+			<form class="mui-input-group" action="javascript:;">
+				<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-info"></span>
+				<div class="mui-input-row">
+					<input type="password" class="mui-input-password" placeholder="原密码">
+				</div>
+				<span style="color: #abde6d; position: relative;  top: 1.875rem; left: 0.625rem;" class="mui-icon mui-icon-locked"></span>
+				<div class="mui-input-row">
+					<input type="password" class="mui-input-password" placeholder="新密码">
+				</div>
+				<br><br>
+				<div class="mui-button-row">
+					<button id="btn_findpwd" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+						认</button>
+				</div>
+			</form>
+
+		</div>
+	</body>
+
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var input = ca.tagName('input');
+		var btn_findpwd = ca.id('btn_findpwd');
+		btn_findpwd.addEventListener('tap', function() {
+			var uname = localStorage.getItem('login_user');
+			var pwd = input['0'].value;
+			var newpwd = input['1'].value;
+
+			if (pwd == '') {
+				ca.prompt('请输入原密码！');
+				return;
+			} else if (newpwd == '') {
+				ca.prompt('请输入新密码！');
+				return;
+			}
+
+			ca.get({
+				url: request_url + '/User/login',
+				data: {
+					username: uname,
+					password: pwd,
+				},
+				succFn: function(data) {
+					if (data > 0) {
+						ca.get({
+							url: request_url + '/User/updUserPwdByName',
+							data: {
+								username: uname,
+								password: newpwd,
+							},
+							succFn: function(data) {
+								if (data > 0) {
+									ca.prompt('修改成功！');
+								} else {
+									ca.prompt('修改失败！');
+								}
+							}
+						})
+					} else {
+						ca.prompt('原密码错误！');
+					}
+				}
+			})
+		});
+	</script>
+</html>

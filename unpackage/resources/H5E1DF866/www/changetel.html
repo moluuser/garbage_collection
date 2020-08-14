@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">修改手机号码</h1>
+		</header>
+		<div class="mui-content">
+
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>手机号码：</label>
+					<input type="number" class="mui-input-clear" placeholder="">
+				</div>
+				<div class="mui-button-row">
+					<button id="btn_changetel" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+						认</button>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var input = ca.tagName('input');
+		var btn_changetel = ca.id('btn_changetel');
+		btn_changetel.addEventListener('tap', function() {
+			var login_id = localStorage.getItem('login_id');
+			var newtel = input['0'].value;
+
+			if (newtel == '') {
+				ca.prompt('手机号码不能为空！');
+				return;
+			} else if (newtel.length != 11) {
+				ca.prompt('手机号码格式错误！');
+				return;
+			}
+
+			ca.get({
+				url: request_url + '/User/updUserTelById',
+				data: {
+					uid: login_id,
+					tel: newtel,
+				},
+				succFn: function(data) {
+					if (data > 0) {
+						ca.prompt('修改成功！');
+						var arr = ['my'];
+						ca.sendNotice(arr, 'update', {});
+
+					} else {
+						ca.prompt('修改失败！');
+					}
+				}
+			})
+		});
+	</script>
+</html>

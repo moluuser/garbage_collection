@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">个人信息</h1>
+		</header>
+		<div class="mui-content">
+			<div class="user-info">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell img-list" id="myimg">
+						<span>头像</span>
+						<img id="my_img" src="img/user.png" class="my-img" />
+					</li>
+					<li class="mui-table-view-cell" id="myname">
+						<span>用户名</span>
+						<span id="my_uname" class="mui-pull-right my-info"></span>
+					</li>
+					<li class="mui-table-view-cell" id="mytel">
+						<span>手机号</span>
+						<span id="my_tel" class="mui-pull-right my-info">未填写</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var login_user = localStorage.getItem('login_user')
+		var my_uname = ca.id('my_uname');
+		var my_img = ca.id('my_img');
+		var my_tel = ca.id('my_tel');
+
+		var myuname = ca.id('myuname');
+		var myimg = ca.id('myimg');
+		var mytel = ca.id('mytel');
+
+		myname.addEventListener('tap', function() {
+			ca.prompt('用户名不允许修改！');
+		});
+
+		mytel.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'changetel.html',
+				id: 'changetel'
+			});
+		});
+
+		myimg.addEventListener('tap', function() {
+			var arr = ['拍照', '相册'];
+			ca.actionSheet(arr, {
+				succFn: function(data) {
+					if (data) {
+						// console.log(server_host + data);
+						var myid = localStorage.getItem('login_id');
+						var new_avatar = server_host + data;
+						// ca.prompt('上传成功！');
+						// 修改服务器头像
+						ca.get({
+							url: request_url + '/User/updUserAvaById',
+							data: {
+								uid: myid,
+								avatar: new_avatar,
+							},
+							succFn: function(data) {
+								if (data) {
+									my_img.src = new_avatar;
+									ca.prompt('修改头像成功！');
+
+									var arr = ['me.html'];
+									ca.sendNotice(arr, 'update', {});
+
+								} else {
+									ca.prompt('修改头像失败！');
+								}
+							}
+						})
+					} else {
+						ca.prompt('您还没有选择头像！');
+					}
+				},
+				isUpload: true,
+				uploadUrl: upload_url,
+
+			});
+		});
+
+		ca.receiveNotice('update', function() {
+			get_user();
+		});
+
+		get_user();
+
+		function get_user() {
+			ca.get({
+				url: request_url + '/User/getUserByName',
+				data: {
+					username: login_user
+				},
+				succFn: function(data) {
+					if (data) {
+						var json = JSON.parse(data);
+						my_uname.innerHTML = json.username;
+						if (json.avatar) {
+							my_img.src = json.avatar;
+						}
+						if (json.tel) {
+							my_tel.innerHTML = json.tel;
+						}
+					} else {
+						ca.prompt('未获取到数据！');
+					}
+				}
+			})
+		}
+	</script>
+</html>

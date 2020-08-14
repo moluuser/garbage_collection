@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');				
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<h1 class="mui-title">回收分类</h1>
+		</header>
+		<img id="to_order" class="float-button" src="img/lightorder.png">
+		<div class="mui-content">
+			<div><a href="#"><img style="max-width: 100%; max-height: 100%;" src="img/demo.png" /></a></div>
+			<p class="p-title">可回收物</p>
+			<div class="demo-menu" id="to_type1">
+				<div class="demo-menu-div">
+					<a><img src="img/demo1.png" /></a>
+					<a class="demo-tag" style="color: #8f8f94;">塑料</a>
+				</div>
+				<div class="demo-menu-div">
+					<a><img src="img/demo2.png" /></a>
+					<a class="demo-tag" style="color: #8f8f94;">金属</a>
+				</div>
+				<div class="demo-menu-div">
+					<a><img src="img/demo3.png" /></a>
+					<a class="demo-tag" style="color: #8f8f94;">纺织物</a>
+				</div>
+				<div class="demo-menu-div">
+					<a><img src="img/demo4.png" /></a>
+					<a class="demo-tag" style="color: #8f8f94;">玻璃</a>
+					<p style="font-size: 0.625rem; top: 0.22rem;">(工艺回收)</p>
+				</div>
+				<div class="demo-menu-div">
+					<img src="img/demo5.png" />
+					<a class="demo-tag" style="color: #8f8f94;">纸类</a>
+				</div>
+			</div>
+			<hr align=center width=95% color=#e6e6e6 size=1>
+			<p class="p-title">不可回收物</p>
+			<div class="demo-menu-2"  id="to_type2">
+				<div class="demo-menu-div-2">
+					<img src="img/demo6.png" />
+				</div>
+				<div class="demo-menu-div-2">
+					<img src="img/demo7.png" />
+				</div>
+				<div class="demo-menu-div-2">
+					<img src="img/demo8.png" />
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+<script src="js/castapp.js"></script>
+<script type="text/javascript" src="js/xlb.js"></script>
+<script>
+	var to_type1 = ca.id('to_type1');
+	var to_type2 = ca.id('to_type2');
+	to_type1.addEventListener('tap', function(){
+		ca.newInterface({
+			url:'type1.html',
+			id:'type1'
+		});
+	});
+	to_type2.addEventListener('tap', function(){
+		ca.newInterface({
+			url:'type2.html',
+			id:'type2'
+		});
+	});
+</script>
+</html>

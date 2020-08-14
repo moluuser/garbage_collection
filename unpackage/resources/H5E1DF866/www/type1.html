@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<style>
+			.mui-row.mui-fullscreen>[class*="mui-col-"] {
+						height: 100%;
+					}
+					.mui-col-xs-3,
+					.mui-control-content {
+						overflow-y: auto;
+						height: 100%;
+					}
+					.mui-segmented-control .mui-control-item {
+						line-height: 50px;
+						width: 100%;
+					}
+					.mui-segmented-control.mui-segmented-control-inverted .mui-control-item.mui-active {
+						background-color: #fff;
+					}
+				</style>
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">可回收物</h1>
+		</header>
+		<img id="to_order" class="float-button" src="img/lightorder.png">
+		<div class="mui-content">
+			<div class="mui-row">
+				<div class="mui-col-xs-3">
+					<div id="segmentedControls" class="mui-segmented-control mui-segmented-control-inverted mui-segmented-control-vertical">
+
+						<a class="mui-control-item mui-active" href="#content1"><img style="position: relative; top: 0.9375rem;" src="img/shuiping.png"><br>塑料类</a>
+						<a class="mui-control-item" href="#content2"><img style="position: relative; top: 0.9375rem;" src="img/jinshu.png"><br>金属类</a>
+						<a class="mui-control-item" href="#content3"><img style="position: relative; top: 0.9375rem;" src="img/yifu.png"><br>纺织类</a>
+						<a class="mui-control-item" href="#content4"><img style="position: relative; top: 0.9375rem;" src="img/boli.png"><br>玻璃</a>
+						<a class="mui-control-item" href="#content5"><img style="position: relative; top: 0.9375rem;" src="img/zhijin.png"><br>纸类</a>
+					</div>
+				</div>
+				<div id="segmentedControlContents" class="mui-col-xs-9" style="border-left: 1px solid #c8c7cc;">
+					<div id="content1" class="mui-control-content mui-active">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/sld.png" />
+								<p>各种塑料袋</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/slpm.png" />
+								<p>塑料泡沫</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/cjch.png" />
+								<p>塑料餐具餐盒</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/ysl.png" />
+								<p>硬塑料</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/slb.png" />
+								<p>塑料杯子</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/slp.png" />
+								<p>塑料瓶子</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/zlx.png" />
+								<p>塑料整理箱</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/slt.png" />
+								<p>塑料桶</p>
+							</div>
+
+						</div>
+					</div>
+					<div id="content2" class="mui-control-content">	
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo121.png" />
+								<p>易拉罐</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo122.png" />
+								<p>铁皮罐头盒</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo123.png" />
+								<p>牙膏皮</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo124.png" />
+								<p>金属餐具</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo125.png" />
+								<p>电 线</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo126.png" />
+								<p>炒 锅</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo127.png" />
+								<p>铁 罐</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo128.png" />
+								<p>铁艺置物架</p>
+							</div>
+						</div>
+					</div>
+					<div id="content3" class="mui-control-content">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo131.png" />
+								<p>衣 服</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo132.png" />
+								<p>桌 布</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo133.png" />
+								<p>毛 巾</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo134.png" />
+								<p>布 包</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo135.png" />
+								<p>鞋 子</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo136.png" />
+								<p>裤 子</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo137.png" />
+								<p>书 包</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo138.png" />
+								<p>床上用品</p>
+							</div>
+						</div>
+					</div>
+					<div id="content4" class="mui-control-content">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo141.png" />
+								<p>玻璃瓶</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo142.png" />
+								<p>碎玻璃片</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo143.png" />
+								<p>镜 子</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo144.png" />
+								<p>灯 泡</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo145.png" />
+								<p>暖 瓶</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo146.png" />
+								<p>玻璃餐具</p>
+							</div>
+						</div>
+					</div>
+					<div id="content5" class="mui-control-content">
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo151.png" />
+								<p>报 纸</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo152.png" />
+								<p>图 书</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo153.png" />
+								<p>各种包装纸</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo154.png" />
+								<p>办公用纸</p>
+							</div>
+						</div>
+						<div class="type-menu">
+							<div class="type-menu-div">
+								<img src="img/demo155.png" />
+								<p>纸 盒</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo156.png" />
+								<p>纸质相册</p>
+							</div>
+							<div class="type-menu-div">
+								<img src="img/demo157.png" />
+								<p>期 刊</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+	</body>
+
+	<script src="js/castapp.js"></script>
+	<script type="text/javascript" src="js/xlb.js"></script>
+</html>

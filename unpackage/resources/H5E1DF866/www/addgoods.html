@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script src="js/mui.picker.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script src="js/goods.data.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">回收物品信息</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>类别规格</label>
+					<input id="mygoods" type="text" readonly="readonly" class="mui-input-clear addgoodinput" placeholder="点击下方按钮选择">
+				</div>
+				<button id="showgoodsPicker" class="mui-btn mui-btn-block" type="button">选择回收物品类别规格</button>
+				<div class="mui-input-row">
+					<label>名称</label>
+					<input type="text" class="mui-input-clear addgoodinput" placeholder="回收物品的名称">
+				</div>
+				<div class="mui-input-row">
+					<label>数量</label>
+					<input type="number" class="mui-input-clear addgoodinput" placeholder="件">
+				</div>
+				<div class="mui-input-row">
+					<label>预估价格</label>
+					<input type="number" class="mui-input-clear addgoodinput" placeholder="元">
+				</div>
+				<div class="mui-card-footer">
+					<p>您可以通过订单备注或上传图片来描述回收物品的更多详细信息。</p>
+				</div>
+				<div class="mui-button-row">
+					<button id="btn_addgoods" type="button" class="mui-btn" style="color: white; background-color: #a8d176; width: 90%;">确
+						认</button>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		(function($, doc) {
+			$.init();
+			$.ready(function() {
+				/**
+				 * 获取对象属性的值
+				 * 主要用于过滤三级联动中，可能出现的最低级的数据不存在的情况，实际开发中需要注意这一点；
+				 * @param {Object} obj 对象
+				 * @param {String} param 属性名
+				 */
+				var _getParam = function(obj, param) {
+					return obj[param] || '';
+				};
+
+				//-----------------------------------------
+				//					//级联示例
+				var goodsPicker = new $.PopPicker({
+					layer: 3
+				});
+				goodsPicker.setData(goodsData);
+				var showCityPickerButton = doc.getElementById('showgoodsPicker');
+				var cityResult3 = doc.getElementById('cityResult3');
+				var mygoods = ca.id('mygoods');
+				showCityPickerButton.addEventListener('tap', function(event) {
+					goodsPicker.show(function(items) {
+						mygoods.value = _getParam(items[0], 'text') + " " + _getParam(items[1], 'text') + " " +
+							_getParam(items[2], 'text');
+						//返回 false 可以阻止选择框的关闭
+						//return false;
+					});
+				}, false);
+			});
+		})(mui, document);
+
+
+		if (localStorage.getItem('goodstype') != null) {
+			var addgoodinput = ca.className('addgoodinput');
+			addgoodinput['0'].value = localStorage.getItem('goodstype');
+			addgoodinput['1'].value = localStorage.getItem('goodsname');
+			addgoodinput['2'].value = localStorage.getItem('goodsnum');
+			addgoodinput['3'].value = localStorage.getItem('price');
+		}
+
+		var btn_addgoods = ca.id('btn_addgoods');
+		btn_addgoods.addEventListener('tap', function() {
+			var addgoodinput = ca.className('addgoodinput');
+
+			if (addgoodinput['0'].value != '' && addgoodinput['1'].value && addgoodinput['2'].value && addgoodinput['3'].value != '') {
+				localStorage.setItem('goodstype', addgoodinput['0'].value);
+				localStorage.setItem('goodsname', addgoodinput['1'].value);
+				localStorage.setItem('goodsnum', addgoodinput['2'].value);
+				localStorage.setItem('price', addgoodinput['3'].value);
+				
+				var arr = ['go'];
+				ca.sendNotice(arr, 'update', {});
+				ca.closeCurrentInterface();
+			} else {
+				ca.prompt('填写信息不完整！');
+				return;
+			}
+		});
+	</script>
+</html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">系统设置</h1>
+		</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="to_my">个人信息</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="to_findpwd">更改密码</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="to_pact">用户协议</a>
+				</li>
+			</ul>
+			<button class="feed-btn setting-btn" id="loginout">退出登陆</button>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var to_pact = ca.id('to_pact');
+		to_pact.addEventListener('tap', function() {
+			ca.newInterface({
+				url: 'pact.html',
+				id: 'pact'
+			});
+		});
+		var to_my = ca.id('to_my');
+		to_my.addEventListener('tap', function() {
+			if (login_user) {
+				ca.newInterface({
+					url: 'my.html',
+					id: 'my'
+				});
+			} else {
+				ca.prompt('您还没有登录！');
+			}
+		});
+
+		var to_findpwd = ca.id('to_findpwd');
+		to_findpwd.addEventListener('tap', function() {
+			if (login_user) {
+				ca.newInterface({
+					url: 'changepwd.html',
+					id: 'changepwd'
+				});
+			} else {
+				ca.prompt('您还没有登录！');
+			}
+		});
+		var loginout = ca.id('loginout');
+		var login_user = localStorage.getItem('login_user');
+		//退出登录
+		loginout.addEventListener('tap', function() {
+			if (login_user) {
+				ca.closeCurrentInterface();
+				localStorage.removeItem('login_user');
+				localStorage.removeItem('login_id');
+				localStorage.removeItem('hometype');
+				localStorage.removeItem('hometime');
+				localStorage.removeItem('detail');
+				localStorage.removeItem('contactname');
+				localStorage.removeItem('contacttel');
+				localStorage.removeItem('homeaddress');
+				localStorage.removeItem('detailaddress');
+				localStorage.removeItem('goodstype');
+				localStorage.removeItem('goodsname');
+				localStorage.removeItem('goodsnum');
+				localStorage.removeItem('price');
+				localStorage.removeItem('oid');
+				var arr = ['me.html'];
+				ca.sendNotice(arr, 'update', {});
+
+				ca.closeCurrentInterface();
+				//底部导航初始化
+				ca.tabBarInit(true, '');
+				ca.prompt('退出成功！');
+			} else {
+				ca.prompt('您还没有登录！');
+			}
+		});
+	</script>
+</html>

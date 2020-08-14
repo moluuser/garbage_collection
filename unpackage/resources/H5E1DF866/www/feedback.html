@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="css/mui.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" href="css/iconfont.css">
+		<style>
+			.mui-input-group .mui-input-row:after {
+			    display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<script src="js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+			mui.plusReady(function() {
+				// 状态栏
+				plus.navigator.setStatusBarStyle('dark');
+				plus.navigator.setStatusBarBackground('white');
+			});
+		</script>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">意见反馈</h1>
+		</header>
+		<div class="mui-content" style="margin: 0.9375rem; text-align:center;">
+			<div class="feed-panel">
+				<form class="mui-input-group">
+					<textarea id="feed-msg" placeholder="请填写您的意见或建议..." rows="5" style="border-bottom:1px solid #DDDDDD;"></textarea>
+					<div class="mui-input-row feed-tel">
+						<label style="font-size: 0.75rem; margin-top: 0.125rem;">手机号码：</label>
+						<input id="feed-tel" type="number" class="mui-input-clear" placeholder="选填">
+					</div>
+				</form>
+			</div>
+			<br>
+			<button id="feed_btn" class="feed-btn">提交</button>
+		</div>
+	</body>
+	<script src="js/castapp.js"></script>
+	<script>
+		ca.init();
+		var feed_btn = ca.id('feed_btn');
+		var login_user = localStorage.getItem('login_user');
+		if(!login_user){
+			login_user = '未登录';
+		}
+		feed_btn.addEventListener('tap', function() {
+			var fmsg = ca.id('feed-msg').value;
+			var ftel = ca.id('feed-tel').value;
+			if (fmsg == '') {
+				ca.prompt('您未填写意见！');
+				return;
+			} else {
+				ca.get({
+					url: request_url + '/Feed/addFeed',
+					data: {
+						username: login_user,
+						msg: fmsg,
+						tel: ftel
+					},
+					succFn: function(data) {
+						if (data > 0) {
+							ca.prompt('提交成功！感谢您的意见！');
+						} else {
+							ca.prompt('提交失败！');
+						}
+					}
+				})
+			}
+		});
+	</script>
+</html>
